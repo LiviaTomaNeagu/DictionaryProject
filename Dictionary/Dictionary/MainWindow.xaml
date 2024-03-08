@@ -1,0 +1,90 @@
+﻿<Window x:Class="Dictionary.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Dictionary"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TabControl x:Name="Mode">
+            <TabItem Header="Administrator" FontSize="15">
+                <Grid>
+                      <Border Name="Login" Width="250" Height="280" Background="#213137" CornerRadius="10" Margin="20" Visibility="Hidden">
+                        <Grid Margin="20" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="15" />
+                                <!-- Spațiu separat -->
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <!-- Spațiu separat -->
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Label Content="Login" Foreground="White" FontSize="22" HorizontalAlignment="Center" Grid.Row="0"/>
+                            <Separator Grid.Row="1"/>
+                            <Label Content="Username" Foreground="White" FontSize="15" Grid.Row="2"/>
+                            <TextBox Name="txtUsername" Background="#455A64" Foreground="White" FontSize="18" Grid.Row="3"/>
+                            <Label Content="Password" Foreground="White" FontSize="15" Grid.Row="4"/>
+                            <PasswordBox Name="txtPassword" Background="#455A64" Foreground="White" FontSize="18" Grid.Row="5"/>
+                            <Button Content="Login" Command="{Binding LoginCommand}" Grid.Row="7" Name="LoginButton" Click="LoginButton_Click"/>
+                            <TextBlock Name="txtResult" Visibility="Hidden" Foreground="White" FontWeight="Bold" TextAlignment="Center" Grid.Row="8"/>
+                        </Grid>
+                    </Border>
+                    <TabControl Name="AdminActions" Visibility="Visible">
+                        <TabItem Header="Add word" Foreground="#455A64">
+                           <Grid Margin="20">
+                                <Grid.RowDefinitions>
+                                    <!-- title -->
+                                    <RowDefinition Height="Auto" />
+                                    <!-- name -->
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="10" />
+                                    <!-- category -->
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="10" />
+                                    <!-- description -->
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="80" />
+                                    <RowDefinition Height="10" />
+                                    <!-- photo -->
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Add a new word" Foreground="#455A64" FontWeight="Bold" TextAlignment="Center" Grid.Row="0"/>
+                                <TextBlock Text="Syntax:" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="1"/>
+                                <TextBox Name="SyntaxBox" Background="#c5c8c9" Foreground="White" FontSize="18" Grid.Row="2" TextChanged="name_TextChanged"/>
+                                <TextBlock Text="Category::" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="4"/>
+                                <TextBox Name="CategoryBox" Background="#c5c8c9" Foreground="White" FontSize="18" Grid.Row="5" TextChanged="name_TextChanged"/>
+                                <TextBlock Text="Description:" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="7"/>
+                                <TextBox Name="DescriptionBox" Background="#c5c8c9" Foreground="White" FontSize="18" Grid.Row="8" TextChanged="name_TextChanged"/>
+                                <TextBlock Text="Image:" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="10"/>
+                                <Button Name="ImageButton" Click="ImageButton_Click" Width="400" Content="Add image" Foreground="#455A64" FontWeight="Bold" Grid.Row="11"/>
+                               <!--pentru imagine: folosim un open file dialog cu filtru de extensie-->
+
+                            </Grid>
+
+                        </TabItem>
+                        <TabItem Header="Edit" Foreground="#455A64">
+
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Search" FontSize="15">
+                
+            </TabItem>
+            <TabItem Header="Entertainment" FontSize="15">
+                
+            </TabItem>
+        </TabControl>
+            
+    </Grid>
+</Window>
