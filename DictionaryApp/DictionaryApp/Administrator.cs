@@ -55,7 +55,12 @@ namespace Dictionary
 
         private void DoneButton_Click(object sender, RoutedEventArgs e)
         {
-
+            WordsList.Add(new Word(SyntaxBox.Text, CategoryBox.Text, DescriptionBox.Text));
+            Category newCategory = new Category(CategoryBox.Text);
+            if (!CategoriesList.Contains(newCategory))
+            {
+                CategoriesList.Add(newCategory);
+            }
         }
     }
 }
