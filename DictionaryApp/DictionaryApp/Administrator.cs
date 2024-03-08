@@ -52,5 +52,10 @@ namespace Dictionary
             }
 
         }
+
+        private void DoneButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

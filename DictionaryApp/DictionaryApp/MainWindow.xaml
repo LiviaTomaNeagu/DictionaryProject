@@ -67,6 +67,7 @@
                                     <!-- photo -->
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
                                 <TextBlock Text="Add a new word" Foreground="#455A64" FontWeight="Bold" TextAlignment="Center" Grid.Row="0"/>
                                 <TextBlock Text="Syntax:" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="1"/>
@@ -76,7 +77,8 @@
                                 <TextBlock Text="Description:" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="7"/>
                                 <TextBox Name="DescriptionBox" Background="#c5c8c9" Foreground="White" FontSize="18" Grid.Row="8" TextChanged="name_TextChanged"/>
                                 <TextBlock Text="Image:" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="10"/>
-                                <Button Name="ImageButton" Click="ImageButton_Click" Width="400" Content="Add image" Foreground="#455A64" FontWeight="Bold" Grid.Row="11"/>
+                                <Button Name="ImageButton" Click="ImageButton_Click" Width="150" Content="Add image" Foreground="#455A64" FontWeight="Bold" Grid.Row="11" HorizontalAlignment="Left"/>
+                                <Button Name="DoneButton" Click="DoneButton_Click" Width="100" Content="Done" Foreground="White" Background="#455A64" FontWeight="Bold" Grid.Row="12" HorizontalAlignment="Right"/>
                                 <!--pentru imagine: folosim un open file dialog cu filtru de extensie-->
 
                             </Grid>
