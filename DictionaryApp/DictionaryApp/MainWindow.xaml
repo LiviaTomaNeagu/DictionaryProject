@@ -110,7 +110,7 @@
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
-                                
+
                                 <TextBlock Text="Syntax:" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="0"/>
                                 <TextBox Name="SyntaxBoxEdit" Background="#c5c8c9" Foreground="White" FontSize="18" Grid.Row="1" TextChanged="SearchWordEdit"/>
                                 <ListBox Name="SearchEdit"
@@ -123,7 +123,7 @@
                                     Visibility="Collapsed"
                                     SelectionChanged="SearchEdit_SelectionChanged"
                                     Grid.Row="2"
-                                />          
+                                />
                                 <TextBlock Text="Category::" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="4"/>
 
                                 <ComboBox Name="ExistingCategoriesEdit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="26" Margin="0,0,0,0" SelectedIndex="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="CategorySelected" Grid.RowSpan="2" Grid.Row="5" Foreground="Black"/>
@@ -148,6 +148,10 @@
             <TabItem Header="Search" FontSize="15">
 
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="110*"/>
+                        <ColumnDefinition Width="287*"/>
+                    </Grid.ColumnDefinitions>
                     <ComboBox Name="Categories"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
@@ -167,7 +171,7 @@
                             Height="30"
                             Margin="200,50,0,0"
                             TextChanged="SearchWord"
-                            VerticalContentAlignment="Center"
+                            VerticalContentAlignment="Center" Grid.ColumnSpan="2"
                     />
 
                     <ListBox Name="Suggestions"
@@ -178,19 +182,19 @@
                             Margin="200,80,0,0"
                             VerticalContentAlignment="Center"
                             Visibility="Collapsed"
-                            SelectionChanged="SuggestionsSelectionChanged"
+                            SelectionChanged="SuggestionsSelectionChanged" Grid.ColumnSpan="2"
                     />
 
                     <TextBlock x:Name="NoWordsFoundText"
-                            HorizontalAlignment="Center"
+                            HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             Text="No words found."
-                            Visibility="Collapsed"
+                            Visibility="Collapsed" Grid.Column="1" Margin="177,0,0,0"
                     />
 
                     <Button Content="Enter" 
-                            Margin="650,50,69,322"
-                            Width="75">
+                            Margin="430,50,69,322"
+                            Width="75" Grid.Column="1">
                         <Button.InputBindings>
                             <KeyBinding Key="Enter" 
                                         Command="{Binding YourCommand}" 
@@ -202,7 +206,65 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Entertainment" FontSize="15">
-
+                <Grid>
+                    <Button 
+                        x:Name="EntertainmentButton" 
+                        Content="Start Game" 
+                        Width="100" Height="50" 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center" 
+                        Click="EntertainmentButtonClick" 
+                        Visibility="Visible"
+                    />
+                    <TextBox 
+                        x:Name="TypeWord" 
+                        Width="400"
+                        Height="30" 
+                        Margin="-150, -160, 0, 0"
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center" 
+                        Visibility="Hidden"
+                    />
+                    <Button 
+                        x:Name="PreviousButton" 
+                        Content="Previous" 
+                        Width="90" Height="30" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Top" 
+                        Click="PreviousButtonClick" 
+                        Visibility="Hidden" Margin="527,106,0,0"
+                        IsEnabled="False"
+                    />
+                    <Button 
+                        x:Name="NextButton" 
+                        Content="Next" 
+                        Width="90" Height="30" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Top" 
+                        Click="NextButtonClick" 
+                        Visibility="Hidden" Margin="622,106,0,0"
+                        IsEnabled="True"
+                    />
+                    <Button 
+                        x:Name="FinishButton" 
+                        Content="Finish" 
+                        Width="90" Height="30" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Top" 
+                        Click="FinishButtonClick" 
+                        Visibility="Hidden" Margin="622,341,0,0" 
+                        IsEnabled="False"
+                    />
+                    <TextBox 
+                        x:Name="DescriptionEntertainmentBox" 
+                        Width="auto"
+                        Height="auto" 
+                        Margin="122,171,0,0"
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Top" 
+                        Visibility="Hidden"
+                    />
+                </Grid>
             </TabItem>
         </TabControl>
 
