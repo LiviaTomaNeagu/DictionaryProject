@@ -10,7 +10,7 @@ namespace Dictionary
 {
     public partial class MainWindow
     {
-        private const string DataFilePath = "E:\\facultate\\anul2\\semestrul2\\MVP\\DictionaryProject\\DictionaryApp\\DictionaryApp\\Data.txt";
+        private const string DataFilePath = "Data.txt";
 
         private void ReadWords()
         {

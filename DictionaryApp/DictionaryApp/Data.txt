@@ -1,5 +1,0 @@
-apple,fruit,cooked
-chocolate,sweets,hot
-banana,fruit,yellow
-grape,fruit,round
-bear,animal,brown

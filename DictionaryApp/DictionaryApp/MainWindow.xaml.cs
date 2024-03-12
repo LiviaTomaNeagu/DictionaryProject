@@ -44,5 +44,17 @@ namespace Dictionary
             Categories.ItemsSource = CategoriesList;
             ExistingCategories.ItemsSource = CategoriesList;
         }
+
+        private void DoneButtonEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteButtonEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        
     }
 }

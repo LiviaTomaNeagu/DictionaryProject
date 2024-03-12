@@ -89,7 +89,58 @@
 
                         </TabItem>
                         <TabItem Header="Edit" Foreground="#455A64">
+                            <Grid Margin="20">
+                                <Grid.RowDefinitions>
+                                    <!-- title -->
+                                    <RowDefinition Height="Auto" />
+                                    <!-- name -->
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="10" />
+                                    <!-- category -->
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <!-- description -->
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="80" />
+                                    <RowDefinition Height="10" />
+                                    <!-- photo -->
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                
+                                <TextBlock Text="Syntax:" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="0"/>
+                                <TextBox Name="SyntaxBoxEdit" Background="#c5c8c9" Foreground="White" FontSize="18" Grid.Row="1" TextChanged="SearchWordEdit"/>
+                                <ListBox Name="SearchEdit"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Width="450"
+                                    Height="auto"
+                                    
+                                    VerticalContentAlignment="Center"
+                                    Visibility="Collapsed"
+                                    SelectionChanged="SearchEdit_SelectionChanged"
+                                    Grid.Row="2"
+                                />          
+                                <TextBlock Text="Category::" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="4"/>
 
+                                <ComboBox Name="ExistingCategoriesEdit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="26" Margin="0,0,0,0" DisplayMemberPath="Name" SelectedValuePath="Name" SelectedIndex="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="CategorySelected" Grid.RowSpan="2" Grid.Row="5"/>
+                                <ListBox Name="ListExistingCategoriesEdit" HorizontalAlignment="Left" VerticalAlignment="Center" Width="598" Height="auto" Margin="150,0,0,0" VerticalContentAlignment="Center" Visibility="Collapsed" SelectionChanged="CategorySuggestionSelected" Grid.Row="6"/>
+                                <TextBox Name="CategoryBoxEdit" Background="#c5c8c9" Foreground="White" FontSize="18" Grid.Row="5" TextChanged="SearchCategory" HorizontalAlignment="Left" VerticalAlignment="Center"  Width="598" Height="auto" Margin="150,0,0,0" />
+
+                                <TextBlock Text="Description:" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="7"/>
+                                <TextBox Name="DescriptionBoxEdit" Background="#c5c8c9" Foreground="White" FontSize="18" Grid.Row="8" TextChanged="name_TextChanged"/>
+                                <TextBlock Text="Image:" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="10"/>
+                                <Button Name="ImageButtonEdit" Click="ImageButton_Click" Width="150" Content="Add image" Foreground="#455A64" FontWeight="Bold" Grid.Row="11" HorizontalAlignment="Left"/>
+                                <StackPanel Orientation="Horizontal" Grid.Row="12" HorizontalAlignment="Right">
+                                    <Button Name="DoneButtonEdit" Click="DoneButtonEdit_Click" Width="100" Content="Done" Foreground="White" Background="#455A64" FontWeight="Bold"/>
+                                    <Button Name="DeleteButtonEdit" Click="DeleteButtonEdit_Click" Width="100" Content="Delete" Foreground="White" Background="Red" FontWeight="Bold"/>
+                                </StackPanel>
+                                <!--pentru imagine: folosim un open file dialog cu filtru de extensie-->
+
+                            </Grid>
                         </TabItem>
                     </TabControl>
                 </Grid>
