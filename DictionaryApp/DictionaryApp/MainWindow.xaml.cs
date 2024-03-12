@@ -21,7 +21,7 @@ namespace Dictionary
     /// </summary>
     public partial class MainWindow : Window
     {
-        internal List<Category> CategoriesList = new List<Category>();
+        internal List<string> CategoriesList = new List<string>();
         //{
         //    new Category("Choose category"),
         //    new Category("Categoria1"),
@@ -38,11 +38,16 @@ namespace Dictionary
 
         public MainWindow()
         {
+           
             InitializeComponent();
 
             ReadWords();
             Categories.ItemsSource = CategoriesList;
             ExistingCategories.ItemsSource = CategoriesList;
+            ExistingCategoriesEdit.ItemsSource = CategoriesList;
+
+
+
         }
 
         private void DoneButtonEdit_Click(object sender, RoutedEventArgs e)

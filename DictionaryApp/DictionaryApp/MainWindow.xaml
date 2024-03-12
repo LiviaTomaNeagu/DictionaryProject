@@ -74,7 +74,7 @@
                                 <TextBox Name="SyntaxBox" Background="#c5c8c9" Foreground="White" FontSize="18" Grid.Row="2" TextChanged="name_TextChanged"/>
                                 <TextBlock Text="Category::" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="4"/>
 
-                                <ComboBox Name="ExistingCategories" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="26" Margin="0,0,0,0" DisplayMemberPath="Name" SelectedValuePath="Name" SelectedIndex="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="CategorySelected" Grid.RowSpan="2" Grid.Row="5"/>
+                                <ComboBox Name="ExistingCategories" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="26" Margin="0,0,0,0" SelectedIndex="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="CategorySelected" Grid.RowSpan="2" Grid.Row="5"/>
                                 <ListBox Name="ListExistingCategories" HorizontalAlignment="Left" VerticalAlignment="Center" Width="598" Height="auto" Margin="150,0,0,0" VerticalContentAlignment="Center" Visibility="Collapsed" SelectionChanged="CategorySuggestionSelected" Grid.Row="6"/>
                                 <TextBox Name="CategoryBox" Background="#c5c8c9" Foreground="White" FontSize="18" Grid.Row="5" TextChanged="SearchCategory" HorizontalAlignment="Left" VerticalAlignment="Center"  Width="598" Height="auto" Margin="150,0,0,0" />
 
@@ -126,7 +126,7 @@
                                 />          
                                 <TextBlock Text="Category::" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="4"/>
 
-                                <ComboBox Name="ExistingCategoriesEdit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="26" Margin="0,0,0,0" DisplayMemberPath="Name" SelectedValuePath="Name" SelectedIndex="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="CategorySelected" Grid.RowSpan="2" Grid.Row="5"/>
+                                <ComboBox Name="ExistingCategoriesEdit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="26" Margin="0,0,0,0" SelectedIndex="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="CategorySelected" Grid.RowSpan="2" Grid.Row="5" Foreground="Black"/>
                                 <ListBox Name="ListExistingCategoriesEdit" HorizontalAlignment="Left" VerticalAlignment="Center" Width="598" Height="auto" Margin="150,0,0,0" VerticalContentAlignment="Center" Visibility="Collapsed" SelectionChanged="CategorySuggestionSelected" Grid.Row="6"/>
                                 <TextBox Name="CategoryBoxEdit" Background="#c5c8c9" Foreground="White" FontSize="18" Grid.Row="5" TextChanged="SearchCategory" HorizontalAlignment="Left" VerticalAlignment="Center"  Width="598" Height="auto" Margin="150,0,0,0" />
 
@@ -154,8 +154,6 @@
                             Width="150"
                             Height="30"
                             Margin="50,50,0,0"
-                            DisplayMemberPath="Name"
-                            SelectedValuePath="Name"
                             SelectedIndex="0"
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center"

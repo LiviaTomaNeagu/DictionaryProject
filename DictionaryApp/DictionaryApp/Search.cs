@@ -12,7 +12,7 @@ namespace Dictionary
     {
         private void SearchWord(object sender, TextChangedEventArgs e)
         {
-            FilterWordsByCategory(SearchBar.Text, (Categories.SelectedItem as Category)?.Name);
+            FilterWordsByCategory(SearchBar.Text, Categories.SelectedItem as string);
         }
 
         private void FilterWordsByCategory(string searchText, string selectedCategory)
@@ -39,9 +39,9 @@ namespace Dictionary
 
         private void CategoriesSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (Categories.SelectedItem is Category selectedCategory)
+            if (Categories.SelectedItem is string selectedCategory)
             {
-                FilterWordsByCategory(SearchBar.Text, selectedCategory.Name);
+                FilterWordsByCategory(SearchBar.Text, selectedCategory);
             }
         }
 

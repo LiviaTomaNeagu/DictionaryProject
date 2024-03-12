@@ -57,10 +57,10 @@ namespace Dictionary
         private void DoneButton_Click(object sender, RoutedEventArgs e)
         {
             WordsList.Add(new Word(SyntaxBox.Text, CategoryBox.Text, DescriptionBox.Text));
-            Category newCategory = new Category(CategoryBox.Text);
-            if (!CategoriesList.Any(c => c.Name == newCategory.Name))
+            String newCategory =  CategoryBox.Text;
+            if (!CategoriesList.Any(c => c == newCategory))
             {
-                CategoriesList.Add(new Category(newCategory.Name));
+                CategoriesList.Add(newCategory);
             }
 
             WriteWord(SyntaxBox.Text, CategoryBox.Text, DescriptionBox.Text);
@@ -72,8 +72,7 @@ namespace Dictionary
 
             var categories = CategoriesList
                 .Where(category =>
-                    string.IsNullOrWhiteSpace(searchText) || category.Name.ToLower().StartsWith(searchText))
-                .Select(category => category.Name)
+                    string.IsNullOrWhiteSpace(searchText) || category.ToLower().StartsWith(searchText))
                 .ToList();
 
             if (categories.Count == 0)
@@ -90,9 +89,9 @@ namespace Dictionary
 
         private void CategorySelected(object sender, SelectionChangedEventArgs e)
         {
-            if (ExistingCategories.SelectedItem is Category selectedCategory)
+            if (ExistingCategories.SelectedItem is string selectedCategory)
             {
-                CategoryBox.Text = selectedCategory.Name;
+                CategoryBox.Text = selectedCategory;
                 ExistingCategories.SelectedItem = selectedCategory;
                 ListExistingCategories.SelectedItem = selectedCategory;
                 ListExistingCategories.Visibility = Visibility.Collapsed;
@@ -105,7 +104,7 @@ namespace Dictionary
             {
                 CategoryBox.Text = selectedCategory;
 
-                Category selectedCategoryObject = CategoriesList.FirstOrDefault(cat => cat.Name == selectedCategory);
+                String selectedCategoryObject = CategoriesList.FirstOrDefault(cat => cat == selectedCategory);
                 if (selectedCategoryObject != null) 
                 {
                     ExistingCategories.SelectedItem = selectedCategoryObject;

@@ -13,14 +13,19 @@ namespace Dictionary
         {
             string searchText = SyntaxBoxEdit.Text.ToLower();
 
+            //var words = WordsList
+            //    .Where(word =>
+            //        string.IsNullOrWhiteSpace(searchText) || word.Syntax.ToLower().StartsWith(searchText))
+            //    .Select(word => word.Syntax)
+            //    .ToList();
             var words = WordsList
-                .Where(words =>
-                    string.IsNullOrWhiteSpace(searchText) || words.Syntax.ToLower().StartsWith(searchText))
-                .Select(category => category.Syntax)
+                .Where(word => string.IsNullOrWhiteSpace(searchText) || word.Syntax.ToLower().StartsWith(searchText))
                 .ToList();
 
 
-            SearchEdit.ItemsSource = words;
+            List<String> wordsList = new List<String>();
+            foreach (var wordtext in words) { wordsList.Add(wordtext.Syntax.ToLower()); }
+            SearchEdit.ItemsSource = wordsList;
             SearchEdit.Visibility = !string.IsNullOrWhiteSpace(searchText)
                 ? System.Windows.Visibility.Visible
                 : System.Windows.Visibility.Collapsed;
@@ -30,6 +35,12 @@ namespace Dictionary
         {
             if (SearchEdit.SelectedItem is string selectedWord)
             {
+                Word myWord = null;
+                foreach (Word word in WordsList)
+                {
+                    if (word.Syntax == selectedWord)
+                        myWord = word;
+                }
                 string lowerSearchText = SyntaxBoxEdit.Text.ToLower();
 
                 if (lowerSearchText != selectedWord.ToLower())
@@ -41,8 +52,8 @@ namespace Dictionary
                 ? System.Windows.Visibility.Visible
                 : System.Windows.Visibility.Collapsed;
 
-                //ExistingCategoriesEdit.SelectedItem = selectedWord.Category;
-                //CategoryBoxEdit.Text = selectedWord.Category;
+                ExistingCategoriesEdit.SelectedItem = myWord.Category;
+                CategoryBoxEdit.Text = myWord.Category;
             }
 
             

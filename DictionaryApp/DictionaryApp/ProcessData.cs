@@ -38,11 +38,10 @@ namespace Dictionary
 
                                 WordsList.Add(new Word(syntax, category, description));
 
-                                // Add the category only if it doesn't exist in the list
-                                Category newCategory = new Category(category);
-                                if (!CategoriesList.Any(c => c.Name == newCategory.Name))
+                               
+                                if (!CategoriesList.Any(c => c == category))
                                 {
-                                    CategoriesList.Add(new Category(newCategory.Name));
+                                    CategoriesList.Add(category);
                                 }
                             }
                             else
