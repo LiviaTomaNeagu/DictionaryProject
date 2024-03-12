@@ -12,42 +12,27 @@ namespace Dictionary
     {
         private void SearchWord(object sender, TextChangedEventArgs e)
         {
-            string searchText = SearchBar.Text.ToLower();
-
-            var suggestions = WordsList
-                .Where(word => string.IsNullOrWhiteSpace(searchText) || word.Syntax.ToLower().StartsWith(searchText));
-
-            if (Categories.SelectedItem is Category selectedCategory && selectedCategory.Name != "Choose category")
-            {
-                suggestions = suggestions.Where(word => word.Category == selectedCategory.Name);
-            }
-
-            var suggestionList = suggestions.Select(word => word.Syntax).ToList();
-
-            if (suggestionList.Count == 0)
-            {
-                suggestionList.Add("No words found. :(");
-            }
-
-            Suggestions.ItemsSource = suggestionList;
-            Suggestions.Visibility = !string.IsNullOrWhiteSpace(searchText)
-                ? System.Windows.Visibility.Visible
-                : System.Windows.Visibility.Collapsed;
+            FilterWordsByCategory(SearchBar.Text, (Categories.SelectedItem as Category)?.Name);
         }
 
-
-
-        private void FilterWordsByCategory(string selectedCategory)
+        private void FilterWordsByCategory(string searchText, string selectedCategory)
         {
-            string searchText = SearchBar.Text.ToLower();
+            searchText = searchText.ToLower();
 
             var filteredWords = WordsList
-                .Where(word => (selectedCategory == "Choose category" || word.Category == selectedCategory) &&
-                               (string.IsNullOrWhiteSpace(searchText) || word.Syntax.ToLower().StartsWith(searchText)))
-                .Select(word => word.Syntax);
+                .Where(word =>
+                    ((selectedCategory == null) || word.Category == selectedCategory) &&
+                    (string.IsNullOrWhiteSpace(searchText) || word.Syntax.ToLower().StartsWith(searchText)))
+                .Select(word => word.Syntax)
+                .ToList();
+
+            if (filteredWords.Count == 0)
+            {
+                filteredWords.Add("No words found. :(");
+            }
 
             Suggestions.ItemsSource = filteredWords;
-            Suggestions.Visibility = !string.IsNullOrWhiteSpace(searchText) && filteredWords.Any()
+            Suggestions.Visibility = !string.IsNullOrWhiteSpace(searchText)
                 ? System.Windows.Visibility.Visible
                 : System.Windows.Visibility.Collapsed;
         }
@@ -56,8 +41,7 @@ namespace Dictionary
         {
             if (Categories.SelectedItem is Category selectedCategory)
             {
-                Debug.WriteLine($"Selected Category: {selectedCategory.Name}");
-                FilterWordsByCategory(selectedCategory.Name);
+                FilterWordsByCategory(SearchBar.Text, selectedCategory.Name);
             }
         }
 
@@ -65,14 +49,19 @@ namespace Dictionary
         {
             if (Suggestions.SelectedItem is string selectedWord)
             {
-                //Word selectedWordObject = WordsList.FirstOrDefault(word => word.Syntax == selectedWord);
+                string lowerSearchText = SearchBar.Text.ToLower();
 
-                //if (selectedWordObject != null)
-                //{
-                //    SearchBar.Text = selectedWordObject.Syntax;
-                //    Suggestions.Visibility = Visibility.Collapsed;
-                //}
+                if (lowerSearchText != selectedWord.ToLower())
+                {
+                     SearchBar.Text = selectedWord;
+                }
+
+                Suggestions.Visibility = string.IsNullOrWhiteSpace(SearchBar.Text)
+                ? System.Windows.Visibility.Visible
+                : System.Windows.Visibility.Collapsed;
             }
+
+            Suggestions.SelectedItem = null;
         }
     }
 }

@@ -21,30 +21,28 @@ namespace Dictionary
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        internal List<Category> CategoriesList = new List<Category>
-        {
-            new Category("Choose category"),
-            new Category("Categoria1"),
-            new Category("Categoria2"),
-        };
-        private List<Word> WordsList = new List<Word>
-        {
-            new Word("apple", "Categoria1", "Description1"),
-            new Word("banana", "Categoria2", "Description2"),
-            new Word("orange", "Categoria1", "Description3"),
-            new Word("avocado", "Categoria2", "Description4"),
-            new Word("grape", "Categoria1", "Description5"),
-        };
+        internal List<Category> CategoriesList = new List<Category>();
+        //{
+        //    new Category("Choose category"),
+        //    new Category("Categoria1"),
+        //    new Category("Categoria2"),
+        //};
+        internal List<Word> WordsList = new List<Word>();
+        //{
+        //    new Word("apple", "Categoria1", "Description1"),
+        //    new Word("banana", "Categoria2", "Description2"),
+        //    new Word("orange", "Categoria1", "Description3"),
+        //    new Word("avocado", "Categoria2", "Description4"),
+        //    new Word("grape", "Categoria1", "Description5"),
+        //};
 
         public MainWindow()
         {
             InitializeComponent();
 
-            // Setează sursa pentru ComboBox
+            ReadWords();
             Categories.ItemsSource = CategoriesList;
+            ExistingCategories.ItemsSource = CategoriesList;
         }
     }
-
-
 }

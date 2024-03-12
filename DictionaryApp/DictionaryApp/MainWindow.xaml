@@ -59,7 +59,7 @@
                                     <!-- category -->
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="10" />
+                                    <RowDefinition Height="Auto" />
                                     <!-- description -->
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="80" />
@@ -73,7 +73,11 @@
                                 <TextBlock Text="Syntax:" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="1"/>
                                 <TextBox Name="SyntaxBox" Background="#c5c8c9" Foreground="White" FontSize="18" Grid.Row="2" TextChanged="name_TextChanged"/>
                                 <TextBlock Text="Category::" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="4"/>
-                                <TextBox Name="CategoryBox" Background="#c5c8c9" Foreground="White" FontSize="18" Grid.Row="5" TextChanged="name_TextChanged"/>
+
+                                <ComboBox Name="ExistingCategories" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="26" Margin="0,0,0,0" DisplayMemberPath="Name" SelectedValuePath="Name" SelectedIndex="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="CategorySelected" Grid.RowSpan="2" Grid.Row="5"/>
+                                <ListBox Name="ListExistingCategories" HorizontalAlignment="Left" VerticalAlignment="Center" Width="598" Height="auto" Margin="150,0,0,0" VerticalContentAlignment="Center" Visibility="Collapsed" SelectionChanged="CategorySuggestionSelected" Grid.Row="6"/>
+                                <TextBox Name="CategoryBox" Background="#c5c8c9" Foreground="White" FontSize="18" Grid.Row="5" TextChanged="SearchCategory" HorizontalAlignment="Left" VerticalAlignment="Center"  Width="598" Height="auto" Margin="150,0,0,0" />
+
                                 <TextBlock Text="Description:" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="7"/>
                                 <TextBox Name="DescriptionBox" Background="#c5c8c9" Foreground="White" FontSize="18" Grid.Row="8" TextChanged="name_TextChanged"/>
                                 <TextBlock Text="Image:" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="10"/>
@@ -94,46 +98,56 @@
 
                 <Grid>
                     <ComboBox Name="Categories"
-    HorizontalAlignment="Left"
-    VerticalAlignment="Top"
-    Width="150"
-    Height="30"
-    Margin="50,50,0,0"
-    DisplayMemberPath="Name"
-    SelectedValuePath="Name"
-    SelectedIndex="0"
-    HorizontalContentAlignment="Center"
-    VerticalContentAlignment="Center"
-    SelectionChanged="CategoriesSelectionChanged"
-    />
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Width="150"
+                            Height="30"
+                            Margin="50,50,0,0"
+                            DisplayMemberPath="Name"
+                            SelectedValuePath="Name"
+                            SelectedIndex="0"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            SelectionChanged="CategoriesSelectionChanged"
+                    />
 
                     <TextBox Name="SearchBar"
-    HorizontalAlignment="Left"
-    VerticalAlignment="Top"
-    Width="550"
-    Height="30"
-    Margin="200,50,0,0"
-    TextChanged="SearchWord"
-    VerticalContentAlignment="Center"
-    />
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Width="450"
+                            Height="30"
+                            Margin="200,50,0,0"
+                            TextChanged="SearchWord"
+                            VerticalContentAlignment="Center"
+                    />
 
                     <ListBox Name="Suggestions"
-    HorizontalAlignment="Left"
-    VerticalAlignment="Top"
-    Width="550"
-    Height="auto"
-    Margin="200,80,0,0"
-    VerticalContentAlignment="Center"
-    Visibility="Collapsed"
-    SelectionChanged="SuggestionsSelectionChanged"
-    />
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Width="450"
+                            Height="auto"
+                            Margin="200,80,0,0"
+                            VerticalContentAlignment="Center"
+                            Visibility="Collapsed"
+                            SelectionChanged="SuggestionsSelectionChanged"
+                    />
 
                     <TextBlock x:Name="NoWordsFoundText"
-    HorizontalAlignment="Center"
-    VerticalAlignment="Center"
-    Text="No words found."
-    Visibility="Collapsed"
-    />
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Text="No words found."
+                            Visibility="Collapsed"
+                    />
+
+                    <Button Content="Enter" 
+                            Margin="650,50,69,322"
+                            Width="75">
+                        <Button.InputBindings>
+                            <KeyBinding Key="Enter" 
+                                        Command="{Binding YourCommand}" 
+                        />
+                        </Button.InputBindings>
+                    </Button>
 
 
                 </Grid>

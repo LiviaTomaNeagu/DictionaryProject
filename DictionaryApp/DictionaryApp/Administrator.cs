@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows;
 using System.Security.Cryptography.X509Certificates;
+using System.Diagnostics;
 
 namespace Dictionary
 {
@@ -57,10 +58,63 @@ namespace Dictionary
         {
             WordsList.Add(new Word(SyntaxBox.Text, CategoryBox.Text, DescriptionBox.Text));
             Category newCategory = new Category(CategoryBox.Text);
-            if (!CategoriesList.Contains(newCategory))
+            if (!CategoriesList.Any(c => c.Name == newCategory.Name))
             {
-                CategoriesList.Add(newCategory);
+                CategoriesList.Add(new Category(newCategory.Name));
+            }
+
+            WriteWord(SyntaxBox.Text, CategoryBox.Text, DescriptionBox.Text);
+        }
+
+        private void SearchCategory(object sender, TextChangedEventArgs e)
+        {
+            string searchText = CategoryBox.Text.ToLower();
+
+            var categories = CategoriesList
+                .Where(category =>
+                    string.IsNullOrWhiteSpace(searchText) || category.Name.ToLower().StartsWith(searchText))
+                .Select(category => category.Name)
+                .ToList();
+
+            if (categories.Count == 0)
+            {
+                categories.Add("No category found. :(");
+            }
+
+            ListExistingCategories.ItemsSource = categories;
+            ListExistingCategories.Visibility = !string.IsNullOrWhiteSpace(searchText)
+                ? Visibility.Visible
+                : Visibility.Collapsed;
+        }
+
+
+        private void CategorySelected(object sender, SelectionChangedEventArgs e)
+        {
+            if (ExistingCategories.SelectedItem is Category selectedCategory)
+            {
+                CategoryBox.Text = selectedCategory.Name;
+                ExistingCategories.SelectedItem = selectedCategory;
+                ListExistingCategories.SelectedItem = selectedCategory;
+                ListExistingCategories.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void CategorySuggestionSelected(object sender, SelectionChangedEventArgs e)
+        {
+            if (ListExistingCategories.SelectedItem is string selectedCategory)
+            {
+                CategoryBox.Text = selectedCategory;
+
+                Category selectedCategoryObject = CategoriesList.FirstOrDefault(cat => cat.Name == selectedCategory);
+                if (selectedCategoryObject != null) 
+                {
+                    ExistingCategories.SelectedItem = selectedCategoryObject;
+                    ListExistingCategories.SelectedItem = selectedCategoryObject;
+                }
+
+                ListExistingCategories.Visibility = Visibility.Collapsed;
+            }
+        }
+
     }
 }
