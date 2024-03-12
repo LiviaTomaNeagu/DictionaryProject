@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace Dictionary
 {
@@ -50,14 +51,49 @@ namespace Dictionary
 
         }
 
-        private void DoneButtonEdit_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
 
         private void DeleteButtonEdit_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        public void ModifyWordInFile(string wordToModify, string newCategory, string newDefinition)
+        {
+            // Read all lines from the file
+            var lines = File.ReadAllLines("Data.txt");
+            var updatedLines = new List<string>();
+
+            foreach (var line in lines)
+            {
+                var parts = line.Split(',');
+                if (parts.Length >= 3)
+                {
+                    var word = parts[0].Trim();
+                    var category = parts[1].Trim();
+                    var definition = parts[2].Trim();
+
+                    // Check if this is the word to modify
+                    if (word.Equals(wordToModify, StringComparison.OrdinalIgnoreCase))
+                    {
+                        // Modify the word and/or definition
+                        updatedLines.Add($"{wordToModify},{newCategory}, {newDefinition}");
+                    }
+                    else
+                    {
+                        // Keep the line as it is
+                        updatedLines.Add(line);
+                    }
+                }
+                else
+                {
+                    // Line format not as expected, keep it as it is
+                    updatedLines.Add(line);
+                }
+            }
+
+            // Write the updated lines back to the file
+            File.WriteAllLines("Data.txt", updatedLines);
         }
 
         
