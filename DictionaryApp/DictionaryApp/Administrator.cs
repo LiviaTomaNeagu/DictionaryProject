@@ -63,8 +63,16 @@ namespace Dictionary
             {
                 CategoriesList.Add(newCategory);
             }
-
+            ExistingCategories.ItemsSource = CategoriesList;
+            ExistingCategoriesEdit.ItemsSource = CategoriesList;
+            Categories.ItemsSource = CategoriesList;
             WriteWord(newWord);
+
+            SyntaxBox.Text = null;
+            CategoryBox.Text = null;   
+            DescriptionBox.Text = null;
+            LoadImage("no_image");
+
         }
 
         private void SearchCategory(object sender, TextChangedEventArgs e)

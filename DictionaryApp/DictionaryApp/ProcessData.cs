@@ -27,11 +27,23 @@ namespace Dictionary
                 {
                     string json = File.ReadAllText(DataFilePath);
                     WordsList = JsonConvert.DeserializeObject<List<Word>>(json) ?? new List<Word>();
+                    // Clear the CategoryList to avoid duplicating categories if this method is called multiple times
+                    CategoriesList.Clear();
+
+                    // Add categories to CategoryList
+                    foreach (var word in WordsList)
+                    {
+                        if (!CategoriesList.Contains(word.Category))
+                        {
+                            CategoriesList.Add(word.Category);
+                        }
+                    }   
                 }
                 else
                 {
                     Console.WriteLine("The file does not exist. Creating a new list.");
                     WordsList = new List<Word>();
+                    CategoriesList.Clear();
                 }
             }
             catch (Exception ex)
