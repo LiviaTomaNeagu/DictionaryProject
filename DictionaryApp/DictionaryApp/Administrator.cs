@@ -50,8 +50,6 @@ namespace Dictionary
                 BitmapImage myImage = new BitmapImage(new Uri(filePath, UriKind.Absolute));
                 ImageButton.Tag = myImage;
                 ImageDisplay.Source = myImage;
-
-                //de adaugat butonul in stanga si de modificat imaginea
             }
 
         }

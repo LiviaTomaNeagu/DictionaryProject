@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace Dictionary
 {
@@ -50,6 +51,7 @@ namespace Dictionary
                 ExistingCategoriesEdit.SelectedItem = myWord.Category;
                 CategoryBoxEdit.Text = myWord.Category;
                 DescriptionBoxEdit.Text = myWord.Description;
+                ImageDisplayEdit.Source = myWord.DisplayImage();
 
             }
 
@@ -65,10 +67,11 @@ namespace Dictionary
                     myWord = word;
             }
 
-            ModifyWordInFile(SyntaxBoxEdit.Text, CategoryBoxEdit.Text, DescriptionBoxEdit.Text);
             myWord.Description = DescriptionBoxEdit.Text;
             ExistingCategoriesEdit.SelectedItem = CategoryBoxEdit.Text;
             myWord.Category = CategoryBoxEdit.Text;
+            myWord.AddImage(ImageButtonEdit.Tag);
+            ModifyWordInFile(myWord);
 
 
         }
@@ -78,5 +81,18 @@ namespace Dictionary
             CategoryBoxEdit.Text = ExistingCategoriesEdit.SelectedItem.ToString();
         }
 
+        private void ImageButtonEdit_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string filePath = openFileDialog.FileName;
+                BitmapImage myImage = new BitmapImage(new Uri(filePath, UriKind.Absolute));
+                ImageButtonEdit.Tag = myImage;
+                ImageDisplayEdit.Source = myImage;
+            }
+        }
     }
 }

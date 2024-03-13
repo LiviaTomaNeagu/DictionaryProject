@@ -39,7 +39,7 @@ namespace Dictionary
         }
 
         // Optionally, add a method to convert a base64 string back to an ImageSource for use in your application
-        public static ImageSource ConvertBase64ToImageSource(string base64String)
+        private static ImageSource ConvertBase64ToImageSource(string base64String)
         {
             if (string.IsNullOrEmpty(base64String)) return null;
 
@@ -52,6 +52,38 @@ namespace Dictionary
                 image.StreamSource = stream;
                 image.EndInit();
                 return image;
+            }
+        }
+
+        public ImageSource DisplayImage()
+        {
+            if (!string.IsNullOrEmpty(this.ImageBase64))
+            {
+                byte[] bytes = Convert.FromBase64String(this.ImageBase64);
+                using (MemoryStream ms = new MemoryStream(bytes))
+                {
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmapImage.StreamSource = ms;
+                    bitmapImage.EndInit();
+                    return bitmapImage;
+                }
+            }
+            return null;
+        }
+
+        // Method to add an image and convert it to a base64 string
+        public void AddImage(ImageSource imageSource)
+        {
+            ImageBase64 = ConvertImageSourceToBase64(imageSource);
+        }
+
+        public void AddImage(object imageObject)
+        {
+            if (imageObject is ImageSource imageSource)
+            {
+                this.ImageBase64 = ConvertImageSourceToBase64(imageSource);
             }
         }
     }

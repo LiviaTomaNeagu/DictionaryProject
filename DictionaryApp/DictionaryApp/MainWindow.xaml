@@ -82,7 +82,7 @@
                                 <TextBlock Text="Image:" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="10"/>
                                 <Button Name="ImageButton" Click="ImageButton_Click" Width="150" Height ="25" Content="Add image" Foreground="#455A64" FontWeight="Bold" Grid.Row="11" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                                 <Button Name="DoneButton" Click="DoneButton_Click" Width="100" Height ="25" Content="Done" Foreground="White" Background="#455A64" FontWeight="Bold" Grid.Row="11" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                <Image Name="ImageDisplay" Source="C:\Facultate\ANUL II SEM II\MVP\DictionaryProject\DictionaryApp\DictionaryApp\bin\Debug\net8.0-windows\Data\no_image.jpg" Width="100" Height="150" Grid.Row="10" Margin="274,0,274,-2" Grid.RowSpan="2"/>
+                                <Image Name="ImageDisplay" Width="100" Height="150" Grid.Row="10" Margin="274,0,274,-2" Grid.RowSpan="2"/>
                             </Grid>
 
                         </TabItem>
@@ -131,13 +131,12 @@
                                 <TextBlock Text="Description:" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="7"/>
                                 <TextBox Name="DescriptionBoxEdit" Background="#c5c8c9" Foreground="White" FontSize="18" Grid.Row="8" TextChanged="name_TextChanged"/>
                                 <TextBlock Text="Image:" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="10"/>
-                                <Button Name="ImageButtonEdit" Click="ImageButton_Click" Width="150" Content="Add image" Foreground="#455A64" FontWeight="Bold" Grid.Row="11" HorizontalAlignment="Left"/>
+                                <Button Name="ImageButtonEdit" Click="ImageButtonEdit_Click" Width="150" Content="Add image" Foreground="#455A64" FontWeight="Bold" Grid.Row="11" HorizontalAlignment="Left"/>
                                 <StackPanel Orientation="Horizontal" Grid.Row="12" HorizontalAlignment="Right">
                                     <Button Name="DoneButtonEdit" Click="DoneButtonEdit_Click" Width="100" Content="Done" Foreground="White" Background="#455A64" FontWeight="Bold"/>
                                     <Button Name="DeleteButtonEdit" Click="DeleteButtonEdit_Click" Width="100" Content="Delete" Foreground="White" Background="Red" FontWeight="Bold"/>
                                 </StackPanel>
-                                <!--pentru imagine: folosim un open file dialog cu filtru de extensie-->
-
+                                <Image Name="ImageDisplayEdit" Width="100" Height="150" Grid.Row="10" Margin="274,0,274,-2" Grid.RowSpan="2"/>
                             </Grid>
                         </TabItem>
                     </TabControl>

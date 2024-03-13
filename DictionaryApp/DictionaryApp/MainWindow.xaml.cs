@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using Newtonsoft.Json;
+using DictionaryApp;
 
 namespace Dictionary
 {
@@ -23,19 +25,7 @@ namespace Dictionary
     public partial class MainWindow : Window
     {
         internal List<string> CategoriesList = new List<string>();
-        //{
-        //    new Category("Choose category"),
-        //    new Category("Categoria1"),
-        //    new Category("Categoria2"),
-        //};
         internal List<Word> WordsList = new List<Word>();
-        //{
-        //    new Word("apple", "Categoria1", "Description1"),
-        //    new Word("banana", "Categoria2", "Description2"),
-        //    new Word("orange", "Categoria1", "Description3"),
-        //    new Word("avocado", "Categoria2", "Description4"),
-        //    new Word("grape", "Categoria1", "Description5"),
-        //};
 
         public MainWindow()
         {
@@ -46,56 +36,65 @@ namespace Dictionary
             Categories.ItemsSource = CategoriesList;
             ExistingCategories.ItemsSource = CategoriesList;
             ExistingCategoriesEdit.ItemsSource = CategoriesList;
-
-
+            LoadImage("no_image");
 
         }
 
-        
+        public void LoadImage(string imageName)
+        {
+            string imagePath = DataPathHelper.GetDataFilePath($"{imageName}.jpg"); // Make sure to include the correct file extension
+
+            var image = new BitmapImage();
+            image.BeginInit();
+            image.UriSource = new Uri(imagePath, UriKind.Absolute);
+            image.CacheOption = BitmapCacheOption.OnLoad; // To ensure the image is loaded immediately and stored in memory
+            image.EndInit();
+
+            ImageDisplay.Source = image;
+            ImageDisplayEdit.Source = image;
+        }
 
         private void DeleteButtonEdit_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        public void ModifyWordInFile(string wordToModify, string newCategory, string newDefinition)
+        public void ModifyWordInFile(Word updatedWord)
         {
-            // Read all lines from the file
-            var lines = File.ReadAllLines("Data.txt");
-            var updatedLines = new List<string>();
+            //Path to the JSON file
+            string filePath = DataPathHelper.GetDataFilePath("WordsData.json");
 
-            foreach (var line in lines)
+            // Ensure the file exists
+            if (!File.Exists(filePath))
             {
-                var parts = line.Split(',');
-                if (parts.Length >= 3)
-                {
-                    var word = parts[0].Trim();
-                    var category = parts[1].Trim();
-                    var definition = parts[2].Trim();
-
-                    // Check if this is the word to modify
-                    if (word.Equals(wordToModify, StringComparison.OrdinalIgnoreCase))
-                    {
-                        // Modify the word and/or definition
-                        updatedLines.Add($"{wordToModify},{newCategory}, {newDefinition}");
-                    }
-                    else
-                    {
-                        // Keep the line as it is
-                        updatedLines.Add(line);
-                    }
-                }
-                else
-                {
-                    // Line format not as expected, keep it as it is
-                    updatedLines.Add(line);
-                }
+                // Handle the case where the file does not exist, if necessary
+                return;
             }
 
-            // Write the updated lines back to the file
-            File.WriteAllLines("Data.txt", updatedLines);
+            // Read the existing JSON data
+            var jsonData = File.ReadAllText(filePath);
+            var wordsList = JsonConvert.DeserializeObject<List<Word>>(jsonData) ?? new List<Word>();
+
+            // Find the index of the word to modify
+            int index = wordsList.FindIndex(w => w.Syntax.Equals(updatedWord.Syntax, System.StringComparison.OrdinalIgnoreCase));
+            if (index != -1)
+            {
+                // Replace the old word with the updated word in the list
+                wordsList[index] = updatedWord;
+            }
+            else
+            {
+                // If the word does not exist in the list, add it (optional)
+                wordsList.Add(updatedWord);
+            }
+
+            // Serialize the updated list back to JSON
+            jsonData = JsonConvert.SerializeObject(wordsList, Formatting.Indented);
+
+            // Write the updated JSON data back to the file
+            File.WriteAllText(filePath, jsonData);
         }
 
-        
+
     }
 }
