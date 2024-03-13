@@ -1,84 +1,53 @@
 ﻿using Dictionary;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Dictionary
 {
+
     public partial class MainWindow
     {
-        private const string DataFilePath = "Data.txt";
+        private static readonly string DataFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "WordsData.json");
 
-        private void ReadWords()
+        public void ReadWords()
         {
             try
             {
                 if (File.Exists(DataFilePath))
                 {
-                    using (var reader = new StreamReader(DataFilePath))
-                    {
-                        while (!reader.EndOfStream)
-                        {
-                            string line = reader.ReadLine();
-
-                            // Skip empty or whitespace lines
-                            if (string.IsNullOrWhiteSpace(line))
-                                continue;
-
-                            string[] wordDetails = line.Split(',');
-
-                            if (wordDetails.Length == 3)
-                            {
-                                string syntax = wordDetails[0].Trim();
-                                string category = wordDetails[1].Trim();
-                                string description = wordDetails[2].Trim();
-
-                                WordsList.Add(new Word(syntax, category, description));
-
-                               
-                                if (!CategoriesList.Any(c => c == category))
-                                {
-                                    CategoriesList.Add(category);
-                                }
-                            }
-                            else
-                            {
-                                Console.WriteLine($"Invalid line format: {line}");
-                            }
-                        }
-                    }
+                    string json = File.ReadAllText(DataFilePath);
+                    WordsList = JsonConvert.DeserializeObject<List<Word>>(json) ?? new List<Word>();
                 }
                 else
                 {
-                    Console.WriteLine("The file does not exist.");
+                    Console.WriteLine("The file does not exist. Creating a new list.");
+                    WordsList = new List<Word>();
                 }
             }
-            catch (IOException ex)
+            catch (Exception ex)
             {
-                // Handle file reading error
                 Console.WriteLine($"Error reading the file: {ex.Message}");
             }
         }
 
-        private void WriteWord(string syntax, string category, string description)
+        public void WriteWord(Word word)
         {
             try
             {
-                using (var writer = new StreamWriter(DataFilePath, true))
-                {
-                    // Format the input parameters into a string with a newline character
-                    string line = $"{syntax},{category},{description}";
-                    writer.WriteLine('\n' + line);
-                }
+                // Read existing words, add the new word, then write back to ensure we're always working with a list
+                ReadWords(); // Load current words
+                WordsList.Add(word); // Add the new word
+                CategoriesList.Add(word.Category);
 
-                Console.WriteLine("Data has been written to the file.");
+                string json = JsonConvert.SerializeObject(WordsList, Formatting.Indented);
+                File.WriteAllText(DataFilePath, json);
+
+                Console.WriteLine("Word has been added to the file.");
             }
-            catch (IOException ex)
+            catch (Exception ex)
             {
-                // Handle file writing error
                 Console.WriteLine($"Error writing to the file: {ex.Message}");
             }
         }
