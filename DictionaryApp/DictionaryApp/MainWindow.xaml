@@ -46,7 +46,7 @@
                             <TextBlock Name="txtResult" Visibility="Hidden" Foreground="White" FontWeight="Bold" TextAlignment="Center" Grid.Row="8"/>
                         </Grid>
                     </Border>
-                    <TabControl Name="AdminActions" Visibility="Visible" Grid.ColumnSpan="3">
+                    <TabControl Name="AdminActions" Visibility="Visible" Grid.ColumnSpan="3" >
                         <TabItem Header="Add word" Foreground="#455A64">
                             <Grid Margin="20">
                                 <Grid.RowDefinitions>
@@ -82,7 +82,7 @@
                                 <TextBlock Text="Image:" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="10"/>
                                 <Button Name="ImageButton" Click="ImageButton_Click" Width="150" Height ="25" Content="Add image" Foreground="#455A64" FontWeight="Bold" Grid.Row="11" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                                 <Button Name="DoneButton" Click="DoneButton_Click" Width="100" Height ="25" Content="Done" Foreground="White" Background="#455A64" FontWeight="Bold" Grid.Row="11" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                <Image Name="ImageDisplay" Width="100" Height="150" Grid.Row="10" Margin="274,0,274,-2" Grid.RowSpan="2"/>
+                                <Image Name="ImageDisplay" Grid.Row="10" Margin="274,0,274,-2" Grid.RowSpan="2"/>
                             </Grid>
 
                         </TabItem>

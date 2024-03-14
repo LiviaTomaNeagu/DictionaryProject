@@ -71,6 +71,7 @@ namespace Dictionary
             SyntaxBox.Text = null;
             CategoryBox.Text = null;   
             DescriptionBox.Text = null;
+            ExistingCategories.SelectedItem = null;
             LoadImage("no_image");
 
         }

@@ -73,12 +73,21 @@ namespace Dictionary
             myWord.AddImage(ImageButtonEdit.Tag);
             ModifyWordInFile(myWord);
 
+            SyntaxBoxEdit.Text = null;
+            CategoryBoxEdit.Text = null;
+            ExistingCategoriesEdit.SelectedItem = null;
+            DescriptionBoxEdit.Text = null;
+            LoadImage("no_image");
+
 
         }
 
         private void ExistingCategoriesEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CategoryBoxEdit.Text = ExistingCategoriesEdit.SelectedItem.ToString();
+            if(ExistingCategoriesEdit.SelectedItem != null) {
+                CategoryBoxEdit.Text = ExistingCategoriesEdit.SelectedItem.ToString();
+            }
+            
         }
 
         private void ImageButtonEdit_Click(object sender, RoutedEventArgs e)
