@@ -146,9 +146,9 @@
 
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="220*"/>
-                        <ColumnDefinition Width="11*"/>
-                        <ColumnDefinition Width="563*"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="150"/>
                     </Grid.ColumnDefinitions>
                     <ComboBox Name="Categories"
                             HorizontalAlignment="Left"
@@ -163,14 +163,14 @@
                     />
 
                     <TextBox Name="SearchBar"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            Width="450"
-                            Height="30"
-                            Margin="200,50,0,0"
-                            TextChanged="SearchWord"
-                            VerticalContentAlignment="Center" Grid.ColumnSpan="3"
-                    />
+         HorizontalAlignment="Stretch"
+         VerticalAlignment="Top"
+         Height="30"
+         Margin="0,50,0,0"
+         TextChanged="SearchWord"
+         VerticalContentAlignment="Center"
+         Grid.Column="1"
+/>
 
                     <ListBox Name="Suggestions"
                             HorizontalAlignment="Left"
@@ -191,13 +191,15 @@
                     />
 
                     <Button Name="EnterButton" 
-                            Content="Enter"
-                            Margin="419,50,69,322"
-                            Width="75"
-                            Height="30" Grid.Column="2"
-                            Click="EnterButton_Click"
-                    />
-
+        Content="Enter"
+        Margin="0,50,0,0"
+        Width="100"
+        Height="30"
+        Click="EnterButton_Click"
+                            Grid.Column="2"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Left"
+/>
 
 
                     <TextBox Name="Syntax"
