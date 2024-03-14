@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Dictionary
@@ -14,7 +15,7 @@ namespace Dictionary
         private void SearchWordEdit(object sender, TextChangedEventArgs e)
         {
             string searchText = SyntaxBoxEdit.Text.ToLower();
-            var words = WordsList
+            var words = dictionary.getWordsList()
                 .Where(word => string.IsNullOrWhiteSpace(searchText) || word.Syntax.ToLower().StartsWith(searchText))
                 .ToList();
 
@@ -32,7 +33,7 @@ namespace Dictionary
             if (SearchEdit.SelectedItem is string selectedWord)
             {
                 Word myWord = null;
-                foreach (Word word in WordsList)
+                foreach (Word word in dictionary.getWordsList())
                 {
                     if (word.Syntax == selectedWord)
                         myWord = word;
@@ -59,20 +60,12 @@ namespace Dictionary
         }
 
         private void DoneButtonEdit_Click(object sender, RoutedEventArgs e)
-        {
-            Word myWord = null;
-            foreach (Word word in WordsList)
+        {      
+            if (ImageButtonEdit.Tag is ImageSource imageSource)
             {
-                if (word.Syntax == SyntaxBoxEdit.Text)
-                    myWord = word;
+                processData.ModifyWordInFile(dictionary.modifyWord(SyntaxBoxEdit.Text, CategoryBoxEdit.Text, DescriptionBoxEdit.Text, imageSource));
             }
-
-            myWord.Description = DescriptionBoxEdit.Text;
-            ExistingCategoriesEdit.SelectedItem = CategoryBoxEdit.Text;
-            myWord.Category = CategoryBoxEdit.Text;
-            myWord.AddImage(ImageButtonEdit.Tag);
-            ModifyWordInFile(myWord);
-
+            
             SyntaxBoxEdit.Text = null;
             CategoryBoxEdit.Text = null;
             ExistingCategoriesEdit.SelectedItem = null;

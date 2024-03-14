@@ -57,16 +57,15 @@ namespace Dictionary
         private void DoneButton_Click(object sender, RoutedEventArgs e)
         {
             var imageFromButton = ImageButton.Tag as ImageSource;
-            Word newWord = new Word(SyntaxBox.Text, CategoryBox.Text, DescriptionBox.Text, imageFromButton);
             String newCategory =  CategoryBox.Text;
-            if (!CategoriesList.Any(c => c == newCategory))
+            if (!dictionary.getCategoriesList().Any(c => c == newCategory))
             {
-                CategoriesList.Add(newCategory);
+                dictionary.addCategory(newCategory);
             }
-            ExistingCategories.ItemsSource = CategoriesList;
-            ExistingCategoriesEdit.ItemsSource = CategoriesList;
-            Categories.ItemsSource = CategoriesList;
-            WriteWord(newWord);
+            ExistingCategories.ItemsSource = dictionary.getCategoriesList();
+            ExistingCategoriesEdit.ItemsSource = dictionary.getCategoriesList();
+            Categories.ItemsSource = dictionary.getCategoriesList();
+            processData.WriteWord(SyntaxBox.Text, CategoryBox.Text, DescriptionBox.Text, imageFromButton);
 
             SyntaxBox.Text = null;
             CategoryBox.Text = null;   
@@ -80,7 +79,7 @@ namespace Dictionary
         {
             string searchText = CategoryBox.Text.ToLower();
 
-            var categories = CategoriesList
+            var categories = dictionary.getCategoriesList()
                 .Where(category =>
                     string.IsNullOrWhiteSpace(searchText) || category.ToLower().StartsWith(searchText))
                 .ToList();
@@ -114,7 +113,7 @@ namespace Dictionary
             {
                 CategoryBox.Text = selectedCategory;
 
-                String selectedCategoryObject = CategoriesList.FirstOrDefault(cat => cat == selectedCategory);
+                String selectedCategoryObject = dictionary.getCategoriesList().FirstOrDefault(cat => cat == selectedCategory);
                 if (selectedCategoryObject != null) 
                 {
                     ExistingCategories.SelectedItem = selectedCategoryObject;

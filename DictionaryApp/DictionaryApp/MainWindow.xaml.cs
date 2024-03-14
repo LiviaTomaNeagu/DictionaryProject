@@ -24,18 +24,20 @@ namespace Dictionary
     /// </summary>
     public partial class MainWindow : Window
     {
-        internal List<string> CategoriesList = new List<string>();
-        internal List<Word> WordsList = new List<Word>();
+        static DictionaryLogic dictionary = new DictionaryLogic();
+        static ProcessData processData = new ProcessData(dictionary);
+        //internal List<string> CategoriesList = new List<string>();
+        //internal List<Word> WordsList = new List<Word>();
 
         public MainWindow()
         {
            
             InitializeComponent();
 
-            ReadWords();
-            Categories.ItemsSource = CategoriesList;
-            ExistingCategories.ItemsSource = CategoriesList;
-            ExistingCategoriesEdit.ItemsSource = CategoriesList;
+            processData.ReadWords();
+            Categories.ItemsSource = dictionary.getCategoriesList();
+            ExistingCategories.ItemsSource = dictionary.getCategoriesList();
+            ExistingCategoriesEdit.ItemsSource = dictionary.getCategoriesList();
             LoadImage("no_image");
             Categories.SelectedItem = null;
         }
@@ -59,41 +61,7 @@ namespace Dictionary
 
         }
 
-        public void ModifyWordInFile(Word updatedWord)
-        {
-            //Path to the JSON file
-            string filePath = DataPathHelper.GetDataFilePath("WordsData.json");
-
-            // Ensure the file exists
-            if (!File.Exists(filePath))
-            {
-                // Handle the case where the file does not exist, if necessary
-                return;
-            }
-
-            // Read the existing JSON data
-            var jsonData = File.ReadAllText(filePath);
-            var wordsList = JsonConvert.DeserializeObject<List<Word>>(jsonData) ?? new List<Word>();
-
-            // Find the index of the word to modify
-            int index = wordsList.FindIndex(w => w.Syntax.Equals(updatedWord.Syntax, System.StringComparison.OrdinalIgnoreCase));
-            if (index != -1)
-            {
-                // Replace the old word with the updated word in the list
-                wordsList[index] = updatedWord;
-            }
-            else
-            {
-                // If the word does not exist in the list, add it (optional)
-                wordsList.Add(updatedWord);
-            }
-
-            // Serialize the updated list back to JSON
-            jsonData = JsonConvert.SerializeObject(wordsList, Formatting.Indented);
-
-            // Write the updated JSON data back to the file
-            File.WriteAllText(filePath, jsonData);
-        }
+        
 
         
     }

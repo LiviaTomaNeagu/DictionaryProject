@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DictionaryApp;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace Dictionary
 {
     public partial class MainWindow
     {
+        SearchWords searching = new SearchWords(dictionary);
         private void SearchWord(object sender, TextChangedEventArgs e)
         {
             FilterWordsByCategory(SearchBar.Text, Categories.SelectedItem as string);
@@ -18,21 +20,7 @@ namespace Dictionary
 
         private void FilterWordsByCategory(string searchText, string selectedCategory)
         {
-            searchText = searchText.ToLower();
-
-            var filteredWords = WordsList
-                .Where(word =>
-                    ((selectedCategory == null) || word.Category == selectedCategory) &&
-                    (string.IsNullOrWhiteSpace(searchText) || word.Syntax.ToLower().StartsWith(searchText)))
-                .Select(word => word.Syntax)
-                .ToList();
-
-            if (filteredWords.Count == 0)
-            {
-                filteredWords.Add("No words found. :(");
-            }
-
-            Suggestions.ItemsSource = filteredWords;
+            Suggestions.ItemsSource = searching.getFilteredWords(searchText, selectedCategory);
             Suggestions.Visibility = !string.IsNullOrWhiteSpace(searchText)
                 ? System.Windows.Visibility.Visible
                 : System.Windows.Visibility.Collapsed;
@@ -43,6 +31,7 @@ namespace Dictionary
             if (Categories.SelectedItem is string selectedCategory)
             {
                 FilterWordsByCategory(SearchBar.Text, selectedCategory);
+
             }
         }
 
@@ -79,7 +68,7 @@ namespace Dictionary
             SearchBar.Text = "";
             Categories.SelectedItem = null;
 
-            foreach (Word word in WordsList)
+            foreach (Word word in dictionary.getWordsList())
             {
                 if (word.Syntax == Syntax.Text)
                 {

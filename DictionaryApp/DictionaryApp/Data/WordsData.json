@@ -70,5 +70,17 @@
     "Category": "animal",
     "Description": "cal's wifey",
     "ImageBase64": null
+  },
+  {
+    "Syntax": "inimioara",
+    "Category": "animal",
+    "Description": "inima e animal",
+    "ImageBase64": null
+  },
+  {
+    "Syntax": "strugure",
+    "Category": "fruit",
+    "Description": "strugurii sunt f buni",
+    "ImageBase64": null
   }
 ]
