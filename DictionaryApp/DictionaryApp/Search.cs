@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Dictionary
@@ -64,16 +65,25 @@ namespace Dictionary
             Suggestions.SelectedItem = null;
         }
 
-        private void EnterButtonClick(object sender, SelectionChangedEventArgs e)
+        private void EnterButton_Click(object sender, RoutedEventArgs e)
         {
-            Syntax.Visibility = System.Windows.Visibility.Visible;
-            SyntaxText.Visibility = System.Windows.Visibility.Visible;
+            Syntax.Visibility = Visibility.Visible;
+            SyntaxText.Visibility = Visibility.Visible;
 
-            Description.Visibility = System.Windows.Visibility.Visible;
-            DescriptionText.Visibility = System.Windows.Visibility.Visible;
+            Description.Visibility = Visibility.Visible;
+            DescriptionText.Visibility = Visibility.Visible;
 
+            Syntax.Text = SearchBar.Text;
+            SearchBar.Text = "";
+            Categories.SelectedItem = null;
 
+            foreach (Word word in WordsList)
+            {
+                if (word.Syntax == Syntax.Text)
+                {
+                    Description.Text = word.Description;
+                }    
+            }
         }
-
     }
 }

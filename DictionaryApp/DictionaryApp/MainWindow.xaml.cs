@@ -37,7 +37,7 @@ namespace Dictionary
             ExistingCategories.ItemsSource = CategoriesList;
             ExistingCategoriesEdit.ItemsSource = CategoriesList;
             LoadImage("no_image");
-
+            Categories.SelectedItem = null;
         }
 
         public void LoadImage(string imageName)
@@ -95,6 +95,6 @@ namespace Dictionary
             File.WriteAllText(filePath, jsonData);
         }
 
-
+        
     }
 }
