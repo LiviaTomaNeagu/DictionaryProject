@@ -73,6 +73,8 @@ namespace Dictionary
             Description.Visibility = Visibility.Visible;
             DescriptionText.Visibility = Visibility.Visible;
 
+            ImageDisplaySearch.Visibility = Visibility.Visible;
+
             Syntax.Text = SearchBar.Text;
             SearchBar.Text = "";
             Categories.SelectedItem = null;
@@ -82,6 +84,7 @@ namespace Dictionary
                 if (word.Syntax == Syntax.Text)
                 {
                     Description.Text = word.Description;
+                    ImageDisplaySearch.Source = word.DisplayImage();
                 }    
             }
         }

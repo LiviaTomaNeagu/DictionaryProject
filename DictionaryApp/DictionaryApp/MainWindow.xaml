@@ -250,6 +250,13 @@
                         Visibility="Collapsed"
                         Margin="223,103,0,0" RenderTransformOrigin="0.472,1.374" Grid.Column="2"
                     />
+                    <Image Name="ImageDisplaySearch" Margin="0,103,100,100" HorizontalAlignment="Right" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Bottom">
+                        <Image.RenderTransform>
+                            <ScaleTransform ScaleX="0.5" ScaleY="0.5" />
+                        </Image.RenderTransform>
+                    </Image>
+
+
 
 
                 </Grid>
