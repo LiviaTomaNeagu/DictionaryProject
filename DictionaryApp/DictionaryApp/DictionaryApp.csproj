@@ -9,7 +9,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="no_image.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FileHelpers" Version="3.5.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Data\WordsData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

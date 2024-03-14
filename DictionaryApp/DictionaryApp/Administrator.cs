@@ -8,6 +8,7 @@ using System.Windows.Media.Imaging;
 using System.Windows;
 using System.Security.Cryptography.X509Certificates;
 using System.Diagnostics;
+using System.Windows.Media;
 
 namespace Dictionary
 {
@@ -46,24 +47,32 @@ namespace Dictionary
             if (openFileDialog.ShowDialog() == true)
             {
                 string filePath = openFileDialog.FileName;
-                var image = new Image();
-                image.Source = new BitmapImage(new Uri(filePath, UriKind.Absolute));
-                ImageButton.Content = image;
-                //de adaugat butonul in stanga si de modificat imaginea
+                BitmapImage myImage = new BitmapImage(new Uri(filePath, UriKind.Absolute));
+                ImageButton.Tag = myImage;
+                ImageDisplay.Source = myImage;
             }
 
         }
 
         private void DoneButton_Click(object sender, RoutedEventArgs e)
         {
-            WordsList.Add(new Word(SyntaxBox.Text, CategoryBox.Text, DescriptionBox.Text));
+            var imageFromButton = ImageButton.Tag as ImageSource;
+            Word newWord = new Word(SyntaxBox.Text, CategoryBox.Text, DescriptionBox.Text, imageFromButton);
             String newCategory =  CategoryBox.Text;
             if (!CategoriesList.Any(c => c == newCategory))
             {
                 CategoriesList.Add(newCategory);
             }
+            ExistingCategories.ItemsSource = CategoriesList;
+            ExistingCategoriesEdit.ItemsSource = CategoriesList;
+            Categories.ItemsSource = CategoriesList;
+            WriteWord(newWord);
 
-            WriteWord(SyntaxBox.Text, CategoryBox.Text, DescriptionBox.Text);
+            SyntaxBox.Text = null;
+            CategoryBox.Text = null;   
+            DescriptionBox.Text = null;
+            LoadImage("no_image");
+
         }
 
         private void SearchCategory(object sender, TextChangedEventArgs e)
