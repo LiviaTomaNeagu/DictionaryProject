@@ -193,12 +193,12 @@
                             Visibility="Collapsed" Grid.Column="2" Margin="166,0,0,0"
                     />
 
-                    <Button Content="EnterButton" 
+                    <!--<Button Content="EnterButton" 
                             Margin="419,50,69,322"
                             Width="75"
                             Height="30" Grid.Column="2"
                             Click="EnterButtonClick"
-                    />
+                    />-->
 
 
 
@@ -249,7 +249,7 @@
                         VerticalAlignment="Top"
                         Width="150"
                         Height="20"
-                        Visibility="Collapsed"s
+                        Visibility="Collapsed"
                         Margin="223,103,0,0" RenderTransformOrigin="0.472,1.374" Grid.Column="2"
                     />
 
