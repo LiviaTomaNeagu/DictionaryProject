@@ -46,9 +46,6 @@ namespace Dictionary
             Categories.ItemsSource = CategoriesList;
             ExistingCategories.ItemsSource = CategoriesList;
             ExistingCategoriesEdit.ItemsSource = CategoriesList;
-
-
-
         }
 
         

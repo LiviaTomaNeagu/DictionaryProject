@@ -3,6 +3,6 @@ chocolate,sweets,hot
 banana,fruit,yellow
 grape,fruit,round
 bear,animal,brown
-ring,jewelry, big rock
-rafaello,sweets,ff bun
+ring,jewelry,big rock
+rafaello,sweets,ff bun
 coffee,drink,hot

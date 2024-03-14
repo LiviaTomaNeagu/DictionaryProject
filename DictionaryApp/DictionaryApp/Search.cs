@@ -63,5 +63,17 @@ namespace Dictionary
 
             Suggestions.SelectedItem = null;
         }
+
+        private void EnterButtonClick(object sender, SelectionChangedEventArgs e)
+        {
+            Syntax.Visibility = System.Windows.Visibility.Visible;
+            SyntaxText.Visibility = System.Windows.Visibility.Visible;
+
+            Description.Visibility = System.Windows.Visibility.Visible;
+            DescriptionText.Visibility = System.Windows.Visibility.Visible;
+
+
+        }
+
     }
 }

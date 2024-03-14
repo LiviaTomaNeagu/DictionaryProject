@@ -149,8 +149,9 @@
 
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="110*"/>
-                        <ColumnDefinition Width="287*"/>
+                        <ColumnDefinition Width="220*"/>
+                        <ColumnDefinition Width="11*"/>
+                        <ColumnDefinition Width="563*"/>
                     </Grid.ColumnDefinitions>
                     <ComboBox Name="Categories"
                             HorizontalAlignment="Left"
@@ -171,7 +172,7 @@
                             Height="30"
                             Margin="200,50,0,0"
                             TextChanged="SearchWord"
-                            VerticalContentAlignment="Center" Grid.ColumnSpan="2"
+                            VerticalContentAlignment="Center" Grid.ColumnSpan="3"
                     />
 
                     <ListBox Name="Suggestions"
@@ -182,48 +183,102 @@
                             Margin="200,80,0,0"
                             VerticalContentAlignment="Center"
                             Visibility="Collapsed"
-                            SelectionChanged="SuggestionsSelectionChanged" Grid.ColumnSpan="2"
+                            SelectionChanged="SuggestionsSelectionChanged" Grid.ColumnSpan="3"
                     />
 
                     <TextBlock x:Name="NoWordsFoundText"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             Text="No words found."
-                            Visibility="Collapsed" Grid.Column="1" Margin="177,0,0,0"
+                            Visibility="Collapsed" Grid.Column="2" Margin="166,0,0,0"
                     />
 
-                    <Button Content="Enter" 
-                            Margin="430,50,69,322"
-                            Width="75" Grid.Column="1">
-                        <Button.InputBindings>
-                            <KeyBinding Key="Enter" 
-                                        Command="{Binding YourCommand}" 
-                        />
-                        </Button.InputBindings>
-                    </Button>
+                    <Button Content="EnterButton" 
+                            Margin="419,50,69,322"
+                            Width="75"
+                            Height="30" Grid.Column="2"
+                            Click="EnterButtonClick"
+                    />
+
+
+
+                    <TextBox Name="Syntax"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Width="150"
+                        Height="30"
+                        Margin="50,128,0,0"
+                        TextChanged="SearchWord"
+                        VerticalContentAlignment="Center"
+                        Visibility="Collapsed"
+                    />
+
+                    <TextBlock Name="SyntaxText"
+                        Text="Syntax"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Width="150"
+                        Height="20"
+                        Visibility="Collapsed"
+                        Margin="53,103,0,0" RenderTransformOrigin="0.472,1.374"
+                    />
+
+                    <TextBox Name="Description"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Width="318"
+                        Height="168"
+                        Margin="50,195,0,0"
+                        TextChanged="SearchWord"
+                        Visibility="Collapsed"
+                        VerticalContentAlignment="Center" Grid.ColumnSpan="3"
+                    />
+                    <TextBlock Name="DescriptionText"
+                        Text="Description"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Width="150"
+                        Height="20"
+                        Visibility="Collapsed"
+                        Margin="50,170,0,0" RenderTransformOrigin="0.472,1.374"
+                    />
+
+                    <TextBlock Name="Photo"
+                        Text="Image"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Width="150"
+                        Height="20"
+                        Visibility="Collapsed"s
+                        Margin="223,103,0,0" RenderTransformOrigin="0.472,1.374" Grid.Column="2"
+                    />
 
 
                 </Grid>
             </TabItem>
             <TabItem Header="Entertainment" FontSize="15">
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="67*"/>
+                        <ColumnDefinition Width="727*"/>
+                    </Grid.ColumnDefinitions>
                     <Button 
                         x:Name="EntertainmentButton" 
                         Content="Start Game" 
                         Width="100" Height="50" 
-                        HorizontalAlignment="Center" 
+                        HorizontalAlignment="Left" 
                         VerticalAlignment="Center" 
                         Click="EntertainmentButtonClick" 
-                        Visibility="Visible"
+                        Visibility="Visible" Grid.Column="1" Margin="280,0,0,0"
                     />
                     <TextBox 
                         x:Name="TypeWord" 
                         Width="400"
                         Height="30" 
-                        Margin="-150, -160, 0, 0"
-                        HorizontalAlignment="Center" 
-                        VerticalAlignment="Center" 
-                        Visibility="Hidden"
+                        Margin="55,106,0,0"
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Top" 
+                        Visibility="Hidden" Grid.Column="1"
                     />
                     <Button 
                         x:Name="PreviousButton" 
@@ -232,8 +287,7 @@
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Top" 
                         Click="PreviousButtonClick" 
-                        Visibility="Hidden" Margin="527,106,0,0"
-                        IsEnabled="False"
+                        Visibility="Hidden" Margin="460,106,0,0" Grid.Column="1"
                     />
                     <Button 
                         x:Name="NextButton" 
@@ -242,8 +296,7 @@
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Top" 
                         Click="NextButtonClick" 
-                        Visibility="Hidden" Margin="622,106,0,0"
-                        IsEnabled="True"
+                        Visibility="Hidden" Margin="555,106,0,0" Grid.Column="1"
                     />
                     <Button 
                         x:Name="FinishButton" 
@@ -252,17 +305,35 @@
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Top" 
                         Click="FinishButtonClick" 
-                        Visibility="Hidden" Margin="622,341,0,0" 
-                        IsEnabled="False"
+                        Visibility="Hidden" Margin="555,341,0,0" Grid.Column="1"
                     />
                     <TextBox 
                         x:Name="DescriptionEntertainmentBox" 
                         Width="auto"
                         Height="auto" 
-                        Margin="122,171,0,0"
+                        Margin="55,171,0,0"
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Top" 
-                        Visibility="Hidden"
+                        Visibility="Hidden" Grid.Column="1"
+                    />
+
+                    <TextBox 
+                        x:Name="AnswerBox" 
+                        Width="auto"
+                        Height="auto"
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Top" 
+                        Visibility="Hidden" Margin="327,167,0,0" Grid.Column="1"
+                    />
+
+                    <Button 
+                        x:Name="RestartButton" 
+                        Content="Restart Game" 
+                        Width="120" Height="50" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Top" 
+                        Click="RestartButtonClick" 
+                        Visibility="Hidden" Margin="270,202,0,0" Grid.Column="1" 
                     />
                 </Grid>
             </TabItem>

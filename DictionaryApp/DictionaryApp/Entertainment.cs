@@ -33,9 +33,16 @@ namespace Dictionary
             ChooseRandomWords();
             EntertainmentButton.Visibility = Visibility.Collapsed;
             TypeWord.Visibility = Visibility.Visible;
+
             PreviousButton.Visibility = Visibility.Visible;
+            PreviousButton.IsEnabled = false;
+
             NextButton.Visibility = Visibility.Visible;
+            NextButton.IsEnabled = true;
+
             FinishButton.Visibility = Visibility.Visible;
+            FinishButton.IsEnabled = false;
+
             DescriptionEntertainmentBox.Visibility = Visibility.Visible;
             DescriptionEntertainmentBox.Text = GameWords[CurrentWord].Description;
             TypeWord.Text = "";
@@ -51,6 +58,10 @@ namespace Dictionary
             {
                 PreviousButton.IsEnabled = true;
             }
+            else
+            {
+                PreviousButton.IsEnabled = false;
+            }
             if (CurrentWord != 4)
             {
                 NextButton.IsEnabled = true;
@@ -59,6 +70,10 @@ namespace Dictionary
             {
                 NextButton.IsEnabled = false;
                 FinishButton.IsEnabled = true;
+            }
+            else
+            {
+                FinishButton.IsEnabled = false;
             }
         }
 
@@ -81,6 +96,10 @@ namespace Dictionary
                 NextButton.IsEnabled = false;
                 FinishButton.IsEnabled = true;
             }
+            else
+            {
+                FinishButton.IsEnabled = false;
+            }
         }
 
         private void FinishButtonClick(object sender, RoutedEventArgs e)
@@ -93,6 +112,28 @@ namespace Dictionary
                     CorrectGuessCount++;
                 }
             }
+
+            TypeWord.Visibility = Visibility.Collapsed;
+            PreviousButton.Visibility = Visibility.Collapsed;
+            NextButton.Visibility = Visibility.Collapsed;
+            FinishButton.Visibility = Visibility.Collapsed;
+            DescriptionEntertainmentBox.Visibility = Visibility.Collapsed;
+
+            AnswerBox.Visibility = Visibility.Visible;
+            RestartButton.Visibility = Visibility.Visible;
+            AnswerBox.Text = "You got " + CorrectGuessCount + " answers right out of 5";
+        }
+        private void RestartButtonClick(object sender, RoutedEventArgs e)
+        {
+            GameWords.Clear();
+            Guesses = new List<string> { "", "", "", "", "" };
+            CurrentWord = 0;
+            CorrectGuessCount = 0;
+
+            RestartButton.Visibility = Visibility.Collapsed;
+            AnswerBox.Visibility = Visibility.Collapsed;
+
+            EntertainmentButtonClick(sender, e);
         }
     }
 }
