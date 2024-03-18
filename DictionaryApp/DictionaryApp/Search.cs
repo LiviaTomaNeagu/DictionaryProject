@@ -37,7 +37,7 @@ namespace Dictionary
 
         private void SuggestionsSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (Suggestions.SelectedItem is string selectedWord)
+            if (Suggestions.SelectedItem is string selectedWord && selectedWord != "No words found. :(")
             {
                 string lowerSearchText = SearchBar.Text.ToLower();
 

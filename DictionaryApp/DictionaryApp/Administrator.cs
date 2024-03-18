@@ -111,16 +111,23 @@ namespace Dictionary
         {
             if (ListExistingCategories.SelectedItem is string selectedCategory)
             {
-                CategoryBox.Text = selectedCategory;
-
-                String selectedCategoryObject = dictionary.getCategoriesList().FirstOrDefault(cat => cat == selectedCategory);
-                if (selectedCategoryObject != null) 
+                if (selectedCategory != "No category found. :(")
                 {
-                    ExistingCategories.SelectedItem = selectedCategoryObject;
-                    ListExistingCategories.SelectedItem = selectedCategoryObject;
-                }
+                    CategoryBox.Text = selectedCategory;
 
-                ListExistingCategories.Visibility = Visibility.Collapsed;
+                    string selectedCategoryObject = dictionary.getCategoriesList().FirstOrDefault(cat => cat == selectedCategory);
+                    if (selectedCategoryObject != null)
+                    {
+                        ExistingCategories.SelectedItem = selectedCategoryObject;
+                        ListExistingCategories.SelectedItem = selectedCategoryObject;
+                        ListExistingCategories.Visibility = Visibility.Collapsed;
+                    }
+                }
+                else
+                {
+                    ListExistingCategories.SelectedItem = null;
+                    ListExistingCategories.Visibility = Visibility.Visible;
+                }
             }
         }
 
