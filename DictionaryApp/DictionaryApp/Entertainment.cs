@@ -20,9 +20,6 @@ namespace Dictionary
             EntertainmentButton.Visibility = Visibility.Collapsed;
             TypeWord.Visibility = Visibility.Visible;
 
-            PreviousButton.Visibility = Visibility.Visible;
-            PreviousButton.IsEnabled = false;
-
             NextButton.Visibility = Visibility.Visible;
             NextButton.IsEnabled = true;
 
@@ -55,20 +52,13 @@ namespace Dictionary
             }
         }
 
-        private void PreviousButtonClick(object sender, RoutedEventArgs e)
-        {
-            game.Guesses[game.CurrentWord] = TypeWord.Text;
-            game.CurrentWord--;
-            DescriptionEntertainmentBox.Text = game.GameWords[game.CurrentWord].Description;
-            TypeWord.Text = game.Guesses[game.CurrentWord];
-            PreviousButton.IsEnabled = game.enablePreviousButton();
-            NextButton.IsEnabled = game.enableNextButton();
-            FinishButton.IsEnabled = game.enableFinishButton();
-        }
-
         private void NextButtonClick(object sender, RoutedEventArgs e)
         {
             game.Guesses[game.CurrentWord] = TypeWord.Text;
+            if (TypeWord.Text == game.GameWords[game.CurrentWord].Syntax)
+            {
+
+            }
             game.CurrentWord++;
             Random rnd = new Random();
             int rand = rnd.Next(1, 13);
@@ -95,7 +85,6 @@ namespace Dictionary
                 }
             }
             TypeWord.Text = game.Guesses[game.CurrentWord];
-            PreviousButton.IsEnabled = game.enablePreviousButton();
             NextButton.IsEnabled = game.enableNextButton();
             FinishButton.IsEnabled = game.enableFinishButton();
         }
@@ -112,7 +101,6 @@ namespace Dictionary
             }
 
             TypeWord.Visibility = Visibility.Collapsed;
-            PreviousButton.Visibility = Visibility.Collapsed;
             NextButton.Visibility = Visibility.Collapsed;
             FinishButton.Visibility = Visibility.Collapsed;
             DescriptionEntertainmentBox.Visibility = Visibility.Collapsed;

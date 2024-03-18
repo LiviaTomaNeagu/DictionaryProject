@@ -286,7 +286,7 @@
                         Visibility="Hidden" Grid.Column="1"
                     />
                     <Button 
-                        x:Name="PreviousButton" 
+                        x:Name="NextButton" 
                         Content="Previous" 
                         Width="90" Height="30" 
                         HorizontalAlignment="Left" 
@@ -294,15 +294,7 @@
                         Click="PreviousButtonClick" 
                         Visibility="Hidden" Margin="460,106,0,0" Grid.Column="1"
                     />
-                    <Button 
-                        x:Name="NextButton" 
-                        Content="Next" 
-                        Width="90" Height="30" 
-                        HorizontalAlignment="Left" 
-                        VerticalAlignment="Top" 
-                        Click="NextButtonClick" 
-                        Visibility="Hidden" Margin="555,106,0,0" Grid.Column="1"
-                    />
+                    
                     <Button 
                         x:Name="FinishButton" 
                         Content="Finish" 
