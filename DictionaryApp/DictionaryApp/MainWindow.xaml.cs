@@ -55,13 +55,7 @@ namespace Dictionary
             ImageDisplay.Source = image;
             ImageDisplayEdit.Source = image;
         }
-
-        private void DeleteButtonEdit_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        
+      
 
         
     }

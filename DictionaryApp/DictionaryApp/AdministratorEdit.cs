@@ -96,5 +96,16 @@ namespace Dictionary
                 ImageDisplayEdit.Source = myImage;
             }
         }
+
+
+        private void DeleteButtonEdit_Click(object sender, RoutedEventArgs e)
+        {
+            dictionary.setWordsList( processData.DeleteWord(SyntaxBoxEdit.Text));
+            SyntaxBoxEdit.Text = null;
+            CategoryBoxEdit.Text = null;
+            ExistingCategoriesEdit.SelectedItem = null;
+            DescriptionBoxEdit.Text = null;
+            LoadImage("no_image");
+        }
     }
 }

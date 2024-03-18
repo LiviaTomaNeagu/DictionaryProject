@@ -119,5 +119,47 @@ namespace Dictionary
             // Write the updated JSON data back to the file
             File.WriteAllText(filePath, jsonData);
         }
+
+        // Method to delete a word from the file based on its syntax
+        public List<Word> DeleteWord(string syntax)
+        {
+            // Path to the JSON file
+            string filePath = DataPathHelper.GetDataFilePath("WordsData.json");
+
+            // Ensure the file exists
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine("File does not exist.");
+                return null;
+            }
+
+            // Read the existing JSON data
+            var jsonData = File.ReadAllText(filePath);
+            var wordsList = JsonConvert.DeserializeObject<List<Word>>(jsonData) ?? new List<Word>();
+
+            // Find the index of the word to delete
+            int index = wordsList.FindIndex(w => w.Syntax.Equals(syntax, StringComparison.OrdinalIgnoreCase));
+
+            // Check if the word was found
+            if (index != -1)
+            {
+                // Remove the word from the list
+                wordsList.RemoveAt(index);
+
+                // Serialize the updated list back to JSON
+                jsonData = JsonConvert.SerializeObject(wordsList, Formatting.Indented);
+
+                // Write the updated JSON data back to the file
+                File.WriteAllText(filePath, jsonData);
+
+                Console.WriteLine("Word has been deleted from the file.");
+            }
+            else
+            {
+                Console.WriteLine("Word not found in the file.");
+            }
+
+            return wordsList;
+        }
     }
 }
