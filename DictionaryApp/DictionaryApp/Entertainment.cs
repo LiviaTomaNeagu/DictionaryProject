@@ -12,7 +12,7 @@ namespace Dictionary
     {
 
         internal GameEntertainment game = new GameEntertainment(dictionary);
-        
+
 
         private void EntertainmentButtonClick(object sender, RoutedEventArgs e)
         {
@@ -29,9 +29,30 @@ namespace Dictionary
             FinishButton.Visibility = Visibility.Visible;
             FinishButton.IsEnabled = false;
 
-            DescriptionEntertainmentBox.Visibility = Visibility.Visible;
-            DescriptionEntertainmentBox.Text = game.GameWords[game.CurrentWord].Description;
-            TypeWord.Text = "";
+            Random rnd = new Random();
+            int rand = rnd.Next(1, 13);
+
+            if (game.GameWords[game.CurrentWord].ImageBase64 == null)
+            {
+                DescriptionEntertainmentBox.Visibility = Visibility.Visible;
+                DescriptionEntertainmentBox.Text = game.GameWords[game.CurrentWord].Description;
+                TypeWord.Text = "";
+            }
+            else
+            {
+                if (rand % 2 == 0)
+                {
+                    ImageEntertainmentBox.Source = game.GameWords[game.CurrentWord].DisplayImage();
+                    ImageEntertainmentBox.Visibility = Visibility.Visible;
+                    TypeWord.Text = "";
+                }
+                else
+                {
+                    DescriptionEntertainmentBox.Visibility = Visibility.Visible;
+                    DescriptionEntertainmentBox.Text = game.GameWords[game.CurrentWord].Description;
+                    TypeWord.Text = "";
+                }
+            }
         }
 
         private void PreviousButtonClick(object sender, RoutedEventArgs e)
@@ -49,7 +70,30 @@ namespace Dictionary
         {
             game.Guesses[game.CurrentWord] = TypeWord.Text;
             game.CurrentWord++;
-            DescriptionEntertainmentBox.Text = game.GameWords[game.CurrentWord].Description;
+            Random rnd = new Random();
+            int rand = rnd.Next(1, 13);
+
+            if (game.GameWords[game.CurrentWord].ImageBase64 == null)
+            {
+                DescriptionEntertainmentBox.Visibility = Visibility.Visible;
+                DescriptionEntertainmentBox.Text = game.GameWords[game.CurrentWord].Description;
+                TypeWord.Text = "";
+            }
+            else
+            {
+                if (rand % 2 == 0)
+                {
+                    ImageEntertainmentBox.Source = game.GameWords[game.CurrentWord].DisplayImage();
+                    ImageEntertainmentBox.Visibility = Visibility.Visible;
+                    TypeWord.Text = "";
+                }
+                else
+                {
+                    DescriptionEntertainmentBox.Visibility = Visibility.Visible;
+                    DescriptionEntertainmentBox.Text = game.GameWords[game.CurrentWord].Description;
+                    TypeWord.Text = "";
+                }
+            }
             TypeWord.Text = game.Guesses[game.CurrentWord];
             PreviousButton.IsEnabled = game.enablePreviousButton();
             NextButton.IsEnabled = game.enableNextButton();
@@ -88,3 +132,4 @@ namespace Dictionary
         }
     }
 }
+

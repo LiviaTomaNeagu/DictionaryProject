@@ -271,10 +271,10 @@
                         x:Name="EntertainmentButton" 
                         Content="Start Game" 
                         Width="100" Height="50" 
-                        HorizontalAlignment="Left" 
+                        HorizontalAlignment="Center" 
                         VerticalAlignment="Center" 
                         Click="EntertainmentButtonClick" 
-                        Visibility="Visible" Grid.Column="1" Margin="280,0,0,0"
+                        Visibility="Visible" Grid.ColumnSpan="2"
                     />
                     <TextBox 
                         x:Name="TypeWord" 
@@ -321,6 +321,17 @@
                         VerticalAlignment="Top" 
                         Visibility="Hidden" Grid.Column="1"
                     />
+
+                    <Image
+                        Name="ImageEntertainmentBox"
+                        Width="auto"
+                        Height="auto" 
+                        Margin="55,171,0,0"
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Top" 
+                        Visibility="Hidden" Grid.Column="1"
+                    />
+
 
                     <TextBox 
                         x:Name="AnswerBox" 
