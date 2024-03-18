@@ -34,11 +34,6 @@ namespace Dictionary
             }
         }
 
-        private void name_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void ImageButton_Click(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new Microsoft.Win32.OpenFileDialog();
@@ -104,6 +99,11 @@ namespace Dictionary
                 ExistingCategories.SelectedItem = selectedCategory;
                 ListExistingCategories.SelectedItem = selectedCategory;
                 ListExistingCategories.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                ExistingCategories.SelectedItem = null;
+                CategoryBox.Text = "";
             }
         }
 

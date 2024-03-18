@@ -40,6 +40,7 @@ namespace Dictionary
             ExistingCategoriesEdit.ItemsSource = dictionary.getCategoriesList();
             LoadImage("no_image");
             Categories.SelectedItem = null;
+            ExistingCategories.SelectedItem = null;
         }
 
         public void LoadImage(string imageName)
