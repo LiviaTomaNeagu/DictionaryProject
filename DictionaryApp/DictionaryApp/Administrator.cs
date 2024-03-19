@@ -51,6 +51,10 @@ namespace Dictionary
 
         private void DoneButton_Click(object sender, RoutedEventArgs e)
         {
+            if(!ValidateWord(SyntaxBox.Text, CategoryBox.Text, DescriptionBox.Text)) {
+                MessageBox.Show("Incorrect data inserted", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             var imageFromButton = ImageButton.Tag as ImageSource;
             String newCategory =  CategoryBox.Text;
             if (!dictionary.getCategoriesList().Any(c => c == newCategory))

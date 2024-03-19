@@ -15,8 +15,8 @@
         <TabControl x:Name="Mode">
             <TabItem Header="Administrator" FontSize="15">
                 <Grid>
-                    
-                    <Border Name="Login" Width="250" Height="280" Background="#213137" CornerRadius="10" Margin="129,61,272,61" Visibility="Hidden" Grid.Column="2">
+
+                    <Border Name="Login" Width="250" Height="280" Background="#3e527a" CornerRadius="10" Margin="0,0,0,0" Visibility="Visible" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Grid Margin="20" >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -35,15 +35,15 @@
                             <Label Content="Login" Foreground="White" FontSize="22" HorizontalAlignment="Center" Grid.Row="0"/>
                             <Separator Grid.Row="1"/>
                             <Label Content="Username" Foreground="White" FontSize="15" Grid.Row="2"/>
-                            <TextBox Name="txtUsername" Background="#455A64" Foreground="White" FontSize="18" Grid.Row="3"/>
+                            <TextBox Name="txtUsername" Background="#677482" Foreground="White" FontSize="18" Grid.Row="3"/>
                             <Label Content="Password" Foreground="White" FontSize="15" Grid.Row="4"/>
-                            <PasswordBox Name="txtPassword" Background="#455A64" Foreground="White" FontSize="18" Grid.Row="5"/>
-                            <Button Content="Login" Command="{Binding LoginCommand}" Grid.Row="7" Name="LoginButton" Click="LoginButton_Click"/>
+                            <PasswordBox Name="txtPassword" Background="#677482" Foreground="White" FontSize="18" Grid.Row="5"/>
+                            <Button Content="Login" Command="{Binding LoginCommand}" Grid.Row="7" Name="LoginButton" Click="LoginButton_Click" Background="#c4c4cb"/>
                             <TextBlock Name="txtResult" Visibility="Hidden" Foreground="White" FontWeight="Bold" TextAlignment="Center" Grid.Row="8"/>
                         </Grid>
                     </Border>
-                    <TabControl Name="AdminActions" Visibility="Visible" Grid.ColumnSpan="3" >
-                        <TabItem Header="Add word" Foreground="#455A64">
+                    <TabControl Name="AdminActions" Visibility="Hidden" Grid.ColumnSpan="3" >
+                        <TabItem Header="Add word" Foreground="#3e527a">
                             <Grid Margin="20">
                                 <Grid.RowDefinitions>
                                     <!-- title -->
@@ -70,25 +70,25 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                 </Grid>
-                                <TextBlock Text="Add a new word" Foreground="Black" FontWeight="Bold" TextAlignment="Center" Grid.Row="0"/>
-                                <TextBlock Text="Syntax:" Foreground="Black" FontWeight="Bold" TextAlignment="Left" Grid.Row="1"/>
-                                <TextBox Name="SyntaxBox" Background="White" Foreground="Black" FontSize="18" Grid.Row="2"/>
-                                <TextBlock Text="Category::" Foreground="Black" FontWeight="Bold" TextAlignment="Left" Grid.Row="4"/>
+                                <TextBlock Text="Add a new word" Foreground="#3e527a" FontWeight="Bold" TextAlignment="Center" Grid.Row="0"/>
+                                <TextBlock Text="Syntax:" Foreground="#3e527a" FontWeight="Bold" TextAlignment="Left" Grid.Row="1"/>
+                                <TextBox Name="SyntaxBox" Background="White" Foreground="#3e527a" FontSize="18" Grid.Row="2"/>
+                                <TextBlock Text="Category::" Foreground="#3e527a" FontWeight="Bold" TextAlignment="Left" Grid.Row="4"/>
 
                                 <ComboBox Name="ExistingCategories" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="26" Margin="0,0,0,0" SelectedIndex="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="CategorySelected" Grid.RowSpan="2" Grid.Row="5"/>
                                 <ListBox Name="ListExistingCategories" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="150,0,0,0" VerticalContentAlignment="Center" Visibility="Collapsed" SelectionChanged="CategorySuggestionSelected" Grid.Row="6"/>
-                                <TextBox Name="CategoryBox" Background="white" Foreground="Black" FontSize="18" Grid.Row="5" TextChanged="SearchCategory" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="150,0,0,0" Grid.ColumnSpan="1" />
+                                <TextBox Name="CategoryBox" Background="white" Foreground="#3e527a" FontSize="18" Grid.Row="5" TextChanged="SearchCategory" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="150,0,0,0" Grid.ColumnSpan="1" />
 
-                                <TextBlock Text="Description:" Foreground="Black" FontWeight="Bold" TextAlignment="Left" Grid.Row="7"/>
-                                <TextBox Name="DescriptionBox" Background="white" Foreground="Black" FontSize="18" Grid.Row="8"/>
+                                <TextBlock Text="Description:" Foreground="#3e527a" FontWeight="Bold" TextAlignment="Left" Grid.Row="7"/>
+                                <TextBox Name="DescriptionBox" Background="white" Foreground="#3e527a" FontSize="18" Grid.Row="8"/>
                                 <TextBlock Text="Image:" Foreground="white" FontWeight="Bold" TextAlignment="Left" Grid.Row="10"/>
-                                <Button Name="ImageButton" Click="ImageButton_Click" Width="150" Height ="25" Content="Add image" Foreground="Black" FontWeight="Bold" Grid.Row="11" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                                <Button Name="DoneButton" Click="DoneButton_Click" Width="100" Height ="25" Content="Done" Foreground="White" Background="#455A64" FontWeight="Bold" Grid.Row="11" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                                <Button Name="ImageButton" Click="ImageButton_Click" Width="150" Height ="25" Content="Add image" Foreground="#3e527a" FontWeight="Bold" Grid.Row="11" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                <Button Name="DoneButton" Click="DoneButton_Click" Width="100" Height ="25" Content="Done" Foreground="White" Background="#3e527a" FontWeight="Bold" Grid.Row="11" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                                 <Image Name="ImageDisplay" Grid.Row="10" Margin="274,0,274,-2" Grid.RowSpan="2"/>
                             </Grid>
 
                         </TabItem>
-                        <TabItem Header="Edit" Foreground="#455A64">
+                        <TabItem Header="Edit" Foreground="#3e527a">
                             <Grid Margin="20">
                                 <Grid.RowDefinitions>
                                     <!-- title -->
@@ -116,8 +116,8 @@
                                     </Grid.ColumnDefinitions>
                                 </Grid>
 
-                                <TextBlock Text="Syntax:" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="0"/>
-                                <TextBox Name="SyntaxBoxEdit" Background="#c5c8c9" Foreground="White" FontSize="18" Grid.Row="1" TextChanged="SearchWordEdit"/>
+                                <TextBlock Text="Syntax:" Foreground="#3e527a" FontWeight="Bold" TextAlignment="Left" Grid.Row="0"/>
+                                <TextBox Name="SyntaxBoxEdit" Background="#c4c4cb" Foreground="White" FontSize="18" Grid.Row="1" TextChanged="SearchWordEdit"/>
                                 <ListBox Name="SearchEdit"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
@@ -129,21 +129,21 @@
                                     SelectionChanged="SearchEdit_SelectionChanged"
                                     Grid.Row="2"
                                 />
-                                <TextBlock Text="Category::" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="4"/>
+                                <TextBlock Text="Category::" Foreground="#3e527a" FontWeight="Bold" TextAlignment="Left" Grid.Row="4"/>
 
                                 <ComboBox Name="ExistingCategoriesEdit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="26" Margin="0,0,0,0" SelectedIndex="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="ExistingCategoriesEdit_SelectionChanged" Grid.RowSpan="2" Grid.Row="5" Foreground="Black"/>
                                 <ListBox Name="ListExistingCategoriesEdit" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="150,0,0,0" VerticalContentAlignment="Center" Visibility="Collapsed" Grid.Row="6"/>
-                                <TextBox Name="CategoryBoxEdit" Background="#c5c8c9" Foreground="White" FontSize="18" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="150,0,0,0" />
+                                <TextBox Name="CategoryBoxEdit" Background="#c4c4cb" Foreground="White" FontSize="18" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="150,0,0,0" />
 
-                                <TextBlock Text="Description:" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="7"/>
-                                <TextBox Name="DescriptionBoxEdit" Background="#c5c8c9" Foreground="White" FontSize="18" Grid.Row="8"/>
-                                <TextBlock Text="Image:" Foreground="#455A64" FontWeight="Bold" TextAlignment="Left" Grid.Row="10"/>
-                                <Button Name="ImageButtonEdit" Click="ImageButtonEdit_Click" Width="150" Content="Add image" Foreground="#455A64" FontWeight="Bold" Grid.Row="11" HorizontalAlignment="Left"/>
-                                <StackPanel Orientation="Horizontal" Grid.Row="12" HorizontalAlignment="Right">
-                                    <Button Name="DoneButtonEdit" Click="DoneButtonEdit_Click" Width="100" Content="Done" Foreground="White" Background="#455A64" FontWeight="Bold"/>
-                                    <Button Name="DeleteButtonEdit" Click="DeleteButtonEdit_Click" Width="100" Content="Delete" Foreground="White" Background="Red" FontWeight="Bold"/>
+                                <TextBlock Text="Description:" Foreground="#3e527a" FontWeight="Bold" TextAlignment="Left" Grid.Row="7"/>
+                                <TextBox Name="DescriptionBoxEdit" Background="#c4c4cb" Foreground="White" FontSize="18" Grid.Row="8"/>
+                                <TextBlock Text="Image:" Foreground="#3e527a" FontWeight="Bold" TextAlignment="Left" Grid.Row="10"/>
+                                <Button Name="ImageButtonEdit" Click="ImageButtonEdit_Click" Width="150" Content="Modify image" Foreground="#3e527a" FontWeight="Bold" Grid.Row="11" HorizontalAlignment="Left" Background="#c4c4cb" VerticalAlignment="Top" Height="30"/>
+                                <StackPanel Orientation="Horizontal" Grid.Row="12" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                    <Button Name="DoneButtonEdit" Click="DoneButtonEdit_Click" Width="100" Content="Done" Foreground="White" Background="#3e527a" FontWeight="Bold" Height="40"/>
+                                    <Button Name="DeleteButtonEdit" Click="DeleteButtonEdit_Click" Width="100" Content="Delete" Foreground="White" Background="#7a3e3e" FontWeight="Bold" Height="40"/>
                                 </StackPanel>
-                                <Image Name="ImageDisplayEdit" Width="100" Height="150" Grid.Row="10" Margin="274,0,274,-2" Grid.RowSpan="2"/>
+                                <Image Name="ImageDisplayEdit" Grid.Row="10" Margin="274,5,274,0" Grid.RowSpan="2"/>
                             </Grid>
                         </TabItem>
                     </TabControl>
@@ -155,40 +155,43 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="200"/>
                         <ColumnDefinition  Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="200"/>
                     </Grid.ColumnDefinitions>
                     <ComboBox Name="Categories"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Width="150"
                             Height="30"
-                            Margin="50,50,0,0"
+                            Margin="50,100,0,0"
                             SelectedIndex="0"
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center"
                             SelectionChanged="CategoriesSelectionChanged" 
+                              Background="#c4c4cb"
                     />
 
                     <TextBox Name="SearchBar"
                              HorizontalAlignment="Stretch"
                              VerticalAlignment="Top"
                              Height="30"
-                             Margin="0,50,0,0"
+                             Margin="0,100,0,0"
                              TextChanged="SearchWord"
                              VerticalContentAlignment="Center"
                              Grid.Column="1"
+                              Background="#f4efe8"
                     />
 
+                   
+
                     <ListBox Name="Suggestions"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            Width="450"
-                            Height="auto"
-                            Margin="200,80,0,0"
-                            VerticalContentAlignment="Center"
-                            Visibility="Collapsed"
-                            SelectionChanged="SuggestionsSelectionChanged" Grid.ColumnSpan="3"
-                    />
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Top"
+                         Margin="200,130,0,0"
+                         VerticalContentAlignment="Center"
+                         Visibility="Collapsed"
+                         SelectionChanged="SuggestionsSelectionChanged" Grid.ColumnSpan="2">
+                    </ListBox>
+
 
                     <TextBlock x:Name="NoWordsFoundText"
                             HorizontalAlignment="Left"
@@ -199,14 +202,30 @@
 
                     <Button Name="EnterButton" 
                             Content="Enter"
-                            Margin="0,50,0,0"
-                            Width="100"
+                            Margin="0,100,0,0"
+                            Width="150"
                             Height="30"
                             Click="EnterButton_Click"
                             VerticalAlignment="Top"
                             HorizontalAlignment="Left"
                             Grid.Column="2"
+                            Background="#d5c5b8"
                     />
+
+                    <TextBlock Name="Dictionary"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            TextAlignment="Center"
+                            Height="100"
+                            Margin="0,0,0,0"
+                            Visibility="Visible"
+                            Text="Dictionary"
+                            Grid.Column="1"
+                             FontSize="70"
+                               Foreground="#a69486"
+                               FontStyle="Italic"
+                               FontWeight="DemiBold"
+/>
 
 
                     <TextBox Name="Syntax"
@@ -214,10 +233,11 @@
                         VerticalAlignment="Top"
                         Width="150"
                         Height="30"
-                        Margin="50,128,0,0"
+                        Margin="50,188,0,0"
                         TextChanged="SearchWord"
                         VerticalContentAlignment="Center"
                         Visibility="Collapsed"
+                             Background="#f4efe8"
                     />
 
                     <TextBlock Name="SyntaxText"
@@ -227,19 +247,24 @@
                         Width="150"
                         Height="20"
                         Visibility="Collapsed"
-                        Margin="53,103,0,0" RenderTransformOrigin="0.472,1.374"
+                        Margin="50,163,0,0" RenderTransformOrigin="0.472,1.374"
+                        
                     />
 
                     <TextBox Name="Description"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
-                        Width="318"
-                        Height="168"
-                        Margin="50,195,0,0"
-                        TextChanged="SearchWord"
+                        Width="200"
+                        MinHeight="50"
+                        Margin="50,255,0,0"
                         Visibility="Collapsed"
-                        VerticalContentAlignment="Center" Grid.ColumnSpan="3"
-                    />
+                        VerticalContentAlignment="Center" Grid.ColumnSpan="3" Background="#f4efe8"
+                        TextWrapping="WrapWithOverflow"
+                        VerticalScrollBarVisibility="Disabled"
+                        TextChanged="AutoSizeTextBox_TextChanged"
+                         Loaded="AutoSizeTextBox_Loaded"
+                             />
+                    
                     <TextBlock Name="DescriptionText"
                         Text="Description"
                         HorizontalAlignment="Left"
@@ -247,13 +272,26 @@
                         Width="150"
                         Height="20"
                         Visibility="Collapsed"
-                        Margin="50,170,0,0" RenderTransformOrigin="0.472,1.374"
+                        Margin="50,230,0,0" RenderTransformOrigin="0.472,1.374"                
                     />
 
+                    <TextBlock x:Name="CategorySearch"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Width="150"
+                        Height="20"
+                        Visibility="Collapsed"
+                        Margin="50,140,0,0"
+                        Foreground="#a69486"
+                        FontWeight="DemiBold"/>
+
+
                     <Image Name="ImageDisplaySearch"
-                           Margin="0,150,0,0"
-                           Stretch="UniformToFill" Grid.Column="2"
-                           >
+                           Margin="0,200,0,0"
+                           Stretch="Uniform" Grid.Column="1" Grid.ColumnSpan="2"
+                           
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
                         <Image.RenderTransform>
                             <ScaleTransform ScaleX="0.8" ScaleY="0.8" />
                         </Image.RenderTransform>
@@ -261,8 +299,8 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Entertainment" FontSize="15">
-                <Grid>
+            <TabItem Header="Entertainment" FontSize="15" Background="#f4efe8">
+                <Grid Background="#f4efe8">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="67*"/>
                         <ColumnDefinition Width="727*"/>
@@ -275,54 +313,128 @@
                         VerticalAlignment="Center" 
                         Click="EntertainmentButtonClick" 
                         Visibility="Visible" Grid.ColumnSpan="2"
+                        Background="#a69486"
+                        Foreground="#f4efe8"
+                        FontStyle="Italic"
                     />
                     <TextBox 
                         x:Name="TypeWord" 
-                        Width="400"
                         Height="30" 
-                        Margin="55,106,0,0"
-                        HorizontalAlignment="Left" 
+                        Margin="55,106,200,0"
+                        HorizontalAlignment="Stretch" 
                         VerticalAlignment="Top" 
                         Visibility="Hidden" Grid.Column="1"
                     />
                     <Button 
                         x:Name="NextButton" 
-                        Content="Previous" 
-                        Width="90" Height="30" 
-                        HorizontalAlignment="Left" 
+                        Content="Next" 
+                        Width="100" Height="30" 
+                        HorizontalAlignment="Right" 
                         VerticalAlignment="Top" 
-                        Click="PreviousButtonClick" 
-                        Visibility="Hidden" Margin="460,106,0,0" Grid.Column="1"
+                        Click="NextButtonClick" 
+                        Visibility="Hidden" Margin="460,106,100,0" Grid.Column="1" Background="#a69486" Foreground="#f4efe8"
                     />
                     
                     <Button 
                         x:Name="FinishButton" 
                         Content="Finish" 
                         Width="90" Height="30" 
-                        HorizontalAlignment="Left" 
-                        VerticalAlignment="Top" 
-                        Click="FinishButtonClick" 
-                        Visibility="Hidden" Margin="555,341,0,0" Grid.Column="1"
-                    />
+                        HorizontalAlignment="Right" 
+                        VerticalAlignment="Bottom" 
+                        Click="FinishButton_Click"
+                        Visibility="Hidden" Margin="0,0,40,10" Grid.Column="1"
+                        Background="#a69486"
+                         Foreground="#3e527a"
+                     />
+
                     <TextBox 
-                        x:Name="DescriptionEntertainmentBox" 
-                        Width="auto"
-                        Height="auto" 
-                        Margin="55,171,0,0"
-                        HorizontalAlignment="Left" 
-                        VerticalAlignment="Top" 
-                        Visibility="Hidden" Grid.Column="1"
-                    />
+    x:Name="DescriptionEntertainmentBox" 
+    Width="auto"
+    Height="auto" 
+    Margin="0,171,0,0"
+    HorizontalAlignment="Center" 
+    VerticalAlignment="Top" 
+    Visibility="Hidden"
+    Grid.Column="0" 
+    Grid.ColumnSpan="2"
+    Foreground="#3e527a"
+    Background="#f4efe8"
+    TextChanged="DescriptionEntertainmentBox_TextChanged"
+    Loaded="DescriptionEntertainmentBox_Loaded"
+    TextWrapping="Wrap"
+    BorderBrush="Transparent"
+    BorderThickness="0"
+/>
+
 
                     <Image
                         Name="ImageEntertainmentBox"
                         Width="auto"
                         Height="auto" 
-                        Margin="55,171,0,0"
-                        HorizontalAlignment="Left" 
+                        Margin="0,171,0,100"
+                        HorizontalAlignment="Center" 
                         VerticalAlignment="Top" 
-                        Visibility="Hidden" Grid.Column="1"
+                        Visibility="Hidden" Grid.Column="0" Grid.ColumnSpan="2"
                     />
+
+                    <TextBlock Name="Game"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            TextAlignment="Center"
+                            Height="100"
+                            Margin="0,0,0,0"
+                            Visibility="Hidden"
+                            Text="Guess the word"
+                            Grid.Column="0" Grid.ColumnSpan="2"
+                             FontSize="50"
+                               Foreground="#a69486"
+                               FontStyle="Italic"
+                               FontWeight="DemiBold"
+/>
+
+                    <Grid Visibility="Hidden" x:Name="TableEntertainment" Grid.ColumnSpan="2"  Margin="0,0,0,65" Height="30" VerticalAlignment="Bottom">
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        
+
+                        <Rectangle Grid.Column="0" x:Name="Rect1" Visibility="Hidden"/>
+                        <Rectangle Grid.Column="1" x:Name="Rect2" Visibility="Hidden"/>
+                        <Rectangle Grid.Column="2" x:Name="Rect3" Visibility="Hidden"/>
+                        <Rectangle Grid.Column="3" x:Name="Rect4" Visibility="Hidden"/>
+                        <Rectangle Grid.Column="4" x:Name="Rect5" Visibility="Hidden"/>
+                    </Grid>
+
+                    <TextBlock
+                        x:Name="CorrectAnswer"
+                        Visibility="Hidden"
+                        Grid.ColumnSpan="2"
+                        Grid.Column="0"
+                        Margin="0,0,150,0"
+                        Height="50"
+                        Width="300"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+                        TextAlignment="Left"
+                        Foreground="#677482"/>
+
+                    <TextBlock
+                        x:Name="FinishText"
+                        Visibility="Hidden"
+                        Grid.ColumnSpan="2"
+                        Margin="0,-150,0,0"
+                        Text="WELL DONE!"
+                        FontSize="50"
+                        FontStyle="Italic"
+                        TextAlignment="Center"
+                        Foreground="#a69486"
+                        Background="#f4efe8"
+                        Height="100"/>
 
 
                     <TextBox 
@@ -331,17 +443,18 @@
                         Height="auto"
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Top" 
-                        Visibility="Hidden" Margin="327,167,0,0" Grid.Column="1"
+                        Visibility="Hidden" Margin="327,167,0,0" Grid.Column="1" Background="#3e527a"  Foreground="#f4efe8"
                     />
 
                     <Button 
                         x:Name="RestartButton" 
                         Content="Restart Game" 
                         Width="120" Height="50" 
-                        HorizontalAlignment="Left" 
-                        VerticalAlignment="Top" 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center" 
                         Click="RestartButtonClick" 
-                        Visibility="Hidden" Margin="270,202,0,0" Grid.Column="1" 
+                        Background="#a69486"
+                        Visibility="Hidden" Margin="0,0,0,0" Grid.Column="0" Grid.ColumnSpan ="2"  Foreground="#f4efe8"  
                     />
                 </Grid>
             </TabItem>

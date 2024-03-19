@@ -1,9 +1,13 @@
 ﻿using Dictionary;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Media.Media3D;
+using System.Windows.Shapes;
 
 namespace DictionaryApp
 {
@@ -11,6 +15,7 @@ namespace DictionaryApp
     {
         public List<Word> GameWords = new List<Word>();
         public List<String> Guesses = new List<string> { "", "", "", "", "" };
+        public List<System.Windows.Shapes.Rectangle> Rectangles = new List<System.Windows.Shapes.Rectangle>();
         public int CurrentWord = 0;  // Track the current position in GameWords
         public int CorrectGuessCount = 0;  // Track the number of correct guesses
 
@@ -73,6 +78,14 @@ namespace DictionaryApp
             Guesses = new List<string> { "", "", "", "", "" };
             CurrentWord = 0;
             CorrectGuessCount = 0;
+        }
+
+        public void addRect(List<System.Windows.Shapes.Rectangle> rectList)
+        {
+           foreach(var rect in rectList)
+            {
+                Rectangles.Add(rect);
+            }
         }
     }
 }

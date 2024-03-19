@@ -33,6 +33,11 @@ namespace DictionaryApp
             if (myWord != null)
             {
                 myWord.Description = description;
+                if(!CategoriesList.Contains(category))
+                {
+                    CategoriesList.Add(category);
+                    
+                }
                 myWord.Category = category;
                 myWord.AddImage(imageSource);
             }

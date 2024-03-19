@@ -52,7 +52,13 @@ namespace Dictionary
                 ExistingCategoriesEdit.SelectedItem = myWord.Category;
                 CategoryBoxEdit.Text = myWord.Category;
                 DescriptionBoxEdit.Text = myWord.Description;
-                ImageDisplayEdit.Source = myWord.DisplayImage();
+                if(myWord.DisplayImage() != null)
+                    ImageDisplayEdit.Source = myWord.DisplayImage();
+                else
+                {
+                    ImageDisplayEdit.Source = LoadImage("no_image");
+                }
+                ImageButtonEdit.Tag = myWord.DisplayImage();
 
             }
 
@@ -60,7 +66,12 @@ namespace Dictionary
         }
 
         private void DoneButtonEdit_Click(object sender, RoutedEventArgs e)
-        {      
+        {
+            if (!ValidateWord(SyntaxBoxEdit.Text, CategoryBoxEdit.Text, DescriptionBoxEdit.Text))
+            {
+                MessageBox.Show("Incorrect data inserted", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             if (ImageButtonEdit.Tag is ImageSource imageSource)
             {
                 processData.ModifyWordInFile(dictionary.modifyWord(SyntaxBoxEdit.Text, CategoryBoxEdit.Text, DescriptionBoxEdit.Text, imageSource));
@@ -70,6 +81,8 @@ namespace Dictionary
             CategoryBoxEdit.Text = null;
             ExistingCategoriesEdit.SelectedItem = null;
             DescriptionBoxEdit.Text = null;
+            ListExistingCategoriesEdit.SelectedItem = null;
+            SearchEdit.SelectedItem = null;
             LoadImage("no_image");
 
 

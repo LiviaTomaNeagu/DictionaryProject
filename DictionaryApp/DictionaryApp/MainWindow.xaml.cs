@@ -41,9 +41,11 @@ namespace Dictionary
             LoadImage("no_image");
             Categories.SelectedItem = null;
             ExistingCategories.SelectedItem = null;
+            ExistingCategoriesEdit.SelectedItem = null;
+            CategoryBoxEdit.Text = string.Empty;
         }
 
-        public void LoadImage(string imageName)
+        public ImageSource LoadImage(string imageName)
         {
             string imagePath = DataPathHelper.GetDataFilePath($"{imageName}.jpg"); // Make sure to include the correct file extension
 
@@ -55,9 +57,14 @@ namespace Dictionary
 
             ImageDisplay.Source = image;
             ImageDisplayEdit.Source = image;
-        }
-      
 
-        
+            return image;
+        }
+
+        private bool ValidateWord(string syntax, string category, string description)
+        {
+            if(syntax == "" || category == "" || description == "" ) {  return false; }
+            return true;
+        }
     }
 }
