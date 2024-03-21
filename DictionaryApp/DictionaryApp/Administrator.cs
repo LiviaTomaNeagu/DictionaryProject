@@ -16,16 +16,15 @@ namespace Dictionary
     {
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            // Preia informațiile din TextBox-uri
             string username = txtUsername.Text;
             string password = txtPassword.Password;
 
-            if (username == "1" && password == "2")
+            if (username == "roxanasultan" && password == "roxana")
             {
                 txtResult.Text = "Login succes!";
                 txtResult.Visibility = Visibility.Visible;
                 Login.Visibility = Visibility.Hidden;
-                AdminActions.Visibility = Visibility.Visible;
+                AdminChoices.Visibility = Visibility.Visible;
             }
             else
             {
@@ -48,11 +47,15 @@ namespace Dictionary
             }
 
         }
-
         private void DoneButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!ValidateWord(SyntaxBox.Text, CategoryBox.Text, DescriptionBox.Text))
+            {
+                MessageBox.Show("Incorrect data inserted", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             var imageFromButton = ImageButton.Tag as ImageSource;
-            String newCategory =  CategoryBox.Text;
+            string newCategory =  CategoryBox.Text;
             if (!dictionary.getCategoriesList().Any(c => c == newCategory))
             {
                 dictionary.addCategory(newCategory);
@@ -67,7 +70,7 @@ namespace Dictionary
             DescriptionBox.Text = null;
             ExistingCategories.SelectedItem = null;
             LoadImage("no_image");
-
+            processData.ReadWords();
         }
 
         private void SearchCategory(object sender, TextChangedEventArgs e)
@@ -89,7 +92,6 @@ namespace Dictionary
                 ? Visibility.Visible
                 : Visibility.Collapsed;
         }
-
 
         private void CategorySelected(object sender, SelectionChangedEventArgs e)
         {

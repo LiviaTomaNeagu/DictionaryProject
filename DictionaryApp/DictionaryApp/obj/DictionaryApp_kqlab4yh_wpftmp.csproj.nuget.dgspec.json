@@ -1,0 +1,72 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\facultate\\anul2\\semestrul2\\MVP\\DictionaryProject\\DictionaryApp\\DictionaryApp\\DictionaryApp.csproj": {}
+  },
+  "projects": {
+    "E:\\facultate\\anul2\\semestrul2\\MVP\\DictionaryProject\\DictionaryApp\\DictionaryApp\\DictionaryApp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\facultate\\anul2\\semestrul2\\MVP\\DictionaryProject\\DictionaryApp\\DictionaryApp\\DictionaryApp.csproj",
+        "projectName": "DictionaryApp",
+        "projectPath": "E:\\facultate\\anul2\\semestrul2\\MVP\\DictionaryProject\\DictionaryApp\\DictionaryApp\\DictionaryApp.csproj",
+        "packagesPath": "C:\\Users\\ROXI\\.nuget\\packages\\",
+        "outputPath": "E:\\facultate\\anul2\\semestrul2\\MVP\\DictionaryProject\\DictionaryApp\\DictionaryApp\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\ROXI\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0-windows7.0": {
+            "targetAlias": "net8.0-windows",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
+          "dependencies": {
+            "FileHelpers": {
+              "target": "Package",
+              "version": "[3.5.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

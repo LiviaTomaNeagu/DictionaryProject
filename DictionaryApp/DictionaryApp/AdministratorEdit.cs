@@ -20,12 +20,12 @@ namespace Dictionary
                 .ToList();
 
 
-            List<String> wordsList = new List<String>();
+            List<string> wordsList = new List<string>();
             foreach (var wordtext in words) { wordsList.Add(wordtext.Syntax.ToLower()); }
             SearchEdit.ItemsSource = wordsList;
             SearchEdit.Visibility = !string.IsNullOrWhiteSpace(searchText)
-                ? System.Windows.Visibility.Visible
-                : System.Windows.Visibility.Collapsed;
+                ? Visibility.Visible
+                : Visibility.Collapsed;
         }
 
         private void SearchEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -46,21 +46,29 @@ namespace Dictionary
                 }
 
                 SearchEdit.Visibility = string.IsNullOrWhiteSpace(SyntaxBoxEdit.Text)
-                ? System.Windows.Visibility.Visible
-                : System.Windows.Visibility.Collapsed;
+                ? Visibility.Visible
+                : Visibility.Collapsed;
 
                 ExistingCategoriesEdit.SelectedItem = myWord.Category;
                 CategoryBoxEdit.Text = myWord.Category;
                 DescriptionBoxEdit.Text = myWord.Description;
-                ImageDisplayEdit.Source = myWord.DisplayImage();
-
-            }
-
-            
+                if (myWord.DisplayImage() != null)
+                    ImageDisplayEdit.Source = myWord.DisplayImage();
+                else
+                {
+                    ImageDisplayEdit.Source = LoadImage("no_image");
+                }
+                ImageButtonEdit.Tag = myWord.DisplayImage();
+            }    
         }
 
         private void DoneButtonEdit_Click(object sender, RoutedEventArgs e)
-        {      
+        {
+            if (!ValidateWord(SyntaxBoxEdit.Text, CategoryBoxEdit.Text, DescriptionBoxEdit.Text))
+            {
+                MessageBox.Show("Incorrect data inserted", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             if (ImageButtonEdit.Tag is ImageSource imageSource)
             {
                 processData.ModifyWordInFile(dictionary.modifyWord(SyntaxBoxEdit.Text, CategoryBoxEdit.Text, DescriptionBoxEdit.Text, imageSource));
@@ -70,17 +78,17 @@ namespace Dictionary
             CategoryBoxEdit.Text = null;
             ExistingCategoriesEdit.SelectedItem = null;
             DescriptionBoxEdit.Text = null;
+            ListExistingCategoriesEdit.SelectedItem = null;
+            SearchEdit.SelectedItem = null;
             LoadImage("no_image");
-
-
         }
 
         private void ExistingCategoriesEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(ExistingCategoriesEdit.SelectedItem != null) {
+            if(ExistingCategoriesEdit.SelectedItem != null) 
+            {
                 CategoryBoxEdit.Text = ExistingCategoriesEdit.SelectedItem.ToString();
             }
-            
         }
 
         private void ImageButtonEdit_Click(object sender, RoutedEventArgs e)

@@ -18,12 +18,7 @@ namespace Dictionary
             dictionaryIO = dictionary;
         }
 
-        //private static readonly string DataFilePath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "WordsData.json"));
         private static readonly string DataFilePath = DataPathHelper.GetDataFilePath("WordsData.json");
-        //DataFilePath = Path.GetFullPath(DataFilePath); // Resolves the relative path to an absolute path
-        // Navigate up from the bin\Debug\net8.0-windows directory to the project root and then into the Data directory
-        //private static readonly string DataFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\..\Data\WordsData.json");
-
 
 
         public void ReadWords()

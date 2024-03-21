@@ -41,9 +41,11 @@ namespace Dictionary
             LoadImage("no_image");
             Categories.SelectedItem = null;
             ExistingCategories.SelectedItem = null;
+            ExistingCategoriesEdit.SelectedItem = null;
+            CategoryBoxEdit.Text = string.Empty;
         }
 
-        public void LoadImage(string imageName)
+        public ImageSource LoadImage(string imageName)
         {
             string imagePath = DataPathHelper.GetDataFilePath($"{imageName}.jpg"); // Make sure to include the correct file extension
 
@@ -55,9 +57,69 @@ namespace Dictionary
 
             ImageDisplay.Source = image;
             ImageDisplayEdit.Source = image;
-        }
-      
 
-        
+            return image;
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddWordContent.Visibility = Visibility.Visible;
+            EditContent.Visibility = Visibility.Hidden;
+            AddButton.Visibility = Visibility.Hidden;
+            EditButton.Visibility = Visibility.Hidden;
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            EditContent.Visibility = Visibility.Visible;
+            AddWordContent.Visibility = Visibility.Hidden;
+            AddButton.Visibility = Visibility.Hidden;
+            EditButton.Visibility = Visibility.Hidden;
+        }
+
+        //private void DeleteButtonA(object sender, RoutedEventArgs e)
+        //{
+
+        //}
+
+        private void GoBackButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddWordContent.Visibility = Visibility.Hidden;
+            EditContent.Visibility = Visibility.Hidden;
+            AddButton.Visibility = Visibility.Visible;
+            EditButton.Visibility = Visibility.Visible;
+        }
+
+        private bool ValidateWord(string syntax, string category, string description)
+        {
+            if (syntax == "" || category == "" || description == "") { return false; }
+            return true;
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TabControl tabControl = sender as TabControl;
+            TabItem selectedTab = tabControl.SelectedItem as TabItem;
+
+            if (selectedTab != null && selectedTab.Header.ToString() == "Administrator")
+            {
+                // Show the login content when the "Administrator" tab is selected
+                Login.Visibility = Visibility.Visible;
+                AdminChoices.Visibility = Visibility.Hidden; // Assuming this is your main content for the "Administrator" tab
+            }
+            else
+            {
+                // Hide the login content if another tab is selected
+                Login.Visibility = Visibility.Hidden;
+                AdminChoices.Visibility = Visibility.Visible; // Show your main content for the "Administrator" tab
+
+                // Clear the username and password fields
+                txtUsername.Text = "";
+                txtPassword.Password = "";
+            }
+        }
+
+
+
     }
 }

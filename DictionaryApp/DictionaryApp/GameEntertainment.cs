@@ -1,6 +1,7 @@
 ﻿using Dictionary;
 using System;
 using System.Collections.Generic;
+using System.IO.Packaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,10 +10,10 @@ namespace DictionaryApp
 {
     internal class GameEntertainment
     {
-        public List<Word> GameWords = new List<Word>();
-        public List<String> Guesses = new List<string> { "", "", "", "", "" };
-        public int CurrentWord = 0;  // Track the current position in GameWords
-        public int CorrectGuessCount = 0;  // Track the number of correct guesses
+        public List<Tuple<Word, int>> GameWords = new List<Tuple<Word, int>>();
+        public List<string> Guesses = new List<string> { "", "", "", "", "" };
+        public int CurrentWord = 0;
+        public int CorrectGuessCount = 0;
 
         internal DictionaryLogic dictionary;
 
@@ -25,13 +26,21 @@ namespace DictionaryApp
         public void ChooseRandomWords()
         {
             Random random = new Random();
-            // GameWords = WordsList.OrderBy(word => random.Next()).Take(5).ToList();
             while (GameWords.Count < 5 && dictionary.getWordsList().Count > 0)
             {
                 int randomIndex = random.Next(0, dictionary.getWordsList().Count - 1);
-                if (!GameWords.Contains(dictionary.getWordsList()[randomIndex]))
+                int rand = random.Next(1, 13);
+                bool exists = false;
+                foreach (Tuple<Word, int> word in GameWords)
                 {
-                    GameWords.Add(dictionary.getWordsList()[randomIndex]);
+                    if (dictionary.getWordsList()[randomIndex] == word.Item1)
+                    {
+                        exists = true;
+                    }
+                }
+                if (exists == false)
+                {
+                    GameWords.Add(new Tuple<Word, int>(dictionary.getWordsList()[randomIndex], rand));
                 }
             }
         }

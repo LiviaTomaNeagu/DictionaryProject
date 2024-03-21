@@ -54,5 +54,16 @@ namespace DictionaryApp
         {
             CategoriesList.Clear();
         }
+        public string getCategoryFromWord(string syntax)
+        {
+            foreach (Word word in WordsList)
+            {
+                if (word.Syntax == syntax)
+                {
+                    return word.Category;
+                }
+            }
+            return "";
+        }
     }
 }
