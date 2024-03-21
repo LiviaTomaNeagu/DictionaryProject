@@ -20,7 +20,7 @@ namespace Dictionary
             string username = txtUsername.Text;
             string password = txtPassword.Password;
 
-            if (username == "1" && password == "2")
+            if (username == "admin" && password == "password")
             {
                 txtResult.Text = "Login succes!";
                 txtResult.Visibility = Visibility.Visible;

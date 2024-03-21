@@ -76,7 +76,11 @@ namespace Dictionary
             {
                 processData.ModifyWordInFile(dictionary.modifyWord(SyntaxBoxEdit.Text, CategoryBoxEdit.Text, DescriptionBoxEdit.Text, imageSource));
             }
-            
+            else
+            {
+                processData.ModifyWordInFile(dictionary.modifyWord(SyntaxBoxEdit.Text, CategoryBoxEdit.Text, DescriptionBoxEdit.Text, null));
+            }
+
             SyntaxBoxEdit.Text = null;
             CategoryBoxEdit.Text = null;
             ExistingCategoriesEdit.SelectedItem = null;

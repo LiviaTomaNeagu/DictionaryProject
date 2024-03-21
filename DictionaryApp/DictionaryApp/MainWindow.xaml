@@ -80,7 +80,7 @@
                                 <TextBox Name="CategoryBox" Background="white" Foreground="#3e527a" FontSize="18" Grid.Row="5" TextChanged="SearchCategory" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="150,0,0,0" Grid.ColumnSpan="1" />
 
                                 <TextBlock Text="Description:" Foreground="#3e527a" FontWeight="Bold" TextAlignment="Left" Grid.Row="7"/>
-                                <TextBox Name="DescriptionBox" Background="white" Foreground="#3e527a" FontSize="18" Grid.Row="8"/>
+                                <TextBox Name="DescriptionBox" Background="white" Foreground="#3e527a" FontSize="18" Grid.Row="8" TextWrapping="WrapWithOverflow"/>
                                 <TextBlock Text="Image:" Foreground="white" FontWeight="Bold" TextAlignment="Left" Grid.Row="10"/>
                                 <Button Name="ImageButton" Click="ImageButton_Click" Width="150" Height ="25" Content="Add image" Foreground="#3e527a" FontWeight="Bold" Grid.Row="11" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                                 <Button Name="DoneButton" Click="DoneButton_Click" Width="100" Height ="25" Content="Done" Foreground="White" Background="#3e527a" FontWeight="Bold" Grid.Row="11" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
@@ -136,7 +136,7 @@
                                 <TextBox Name="CategoryBoxEdit" Background="#c4c4cb" Foreground="White" FontSize="18" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="150,0,0,0" />
 
                                 <TextBlock Text="Description:" Foreground="#3e527a" FontWeight="Bold" TextAlignment="Left" Grid.Row="7"/>
-                                <TextBox Name="DescriptionBoxEdit" Background="#c4c4cb" Foreground="White" FontSize="18" Grid.Row="8"/>
+                                <TextBox Name="DescriptionBoxEdit" Background="#c4c4cb" Foreground="White" FontSize="18" Grid.Row="8" TextWrapping="WrapWithOverflow"/>
                                 <TextBlock Text="Image:" Foreground="#3e527a" FontWeight="Bold" TextAlignment="Left" Grid.Row="10"/>
                                 <Button Name="ImageButtonEdit" Click="ImageButtonEdit_Click" Width="150" Content="Modify image" Foreground="#3e527a" FontWeight="Bold" Grid.Row="11" HorizontalAlignment="Left" Background="#c4c4cb" VerticalAlignment="Top" Height="30"/>
                                 <StackPanel Orientation="Horizontal" Grid.Row="12" HorizontalAlignment="Right" VerticalAlignment="Bottom">
@@ -351,7 +351,7 @@
     x:Name="DescriptionEntertainmentBox" 
     Width="auto"
     Height="auto" 
-    Margin="0,171,0,0"
+    Margin="50,171,50,0"
     HorizontalAlignment="Center" 
     VerticalAlignment="Top" 
     Visibility="Hidden"
@@ -361,7 +361,7 @@
     Background="#f4efe8"
     TextChanged="DescriptionEntertainmentBox_TextChanged"
     Loaded="DescriptionEntertainmentBox_Loaded"
-    TextWrapping="Wrap"
+    TextWrapping="WrapWithOverflow"
     BorderBrush="Transparent"
     BorderThickness="0"
 />
