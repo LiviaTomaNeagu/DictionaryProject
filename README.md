@@ -1,1 +1,3 @@
 # DictionaryProject
+
+This project involves developing a multifunctional dictionary application using C# and WPF, structured around three main modules: Administrative, Word Search, and Entertainment. The administrative module allows for the addition, modification, and deletion of dictionary entries, each comprising a description, category, and an optional image. The word search module offers category-based or general searches with autocomplete features, displaying the selected word's description, category, and image. The entertainment module introduces a game where users guess words based on provided descriptions or images. The application ensures user access control and leverages file handling for data storage and retrieval.
